@@ -1,18 +1,60 @@
- // Top-level build file where you can add configuration options common to all sub-projects/modules.
-    buildscript {
-        repositories {
-            google()
-            mavenCentral()
-        }
-        dependencies {
-            classpath "com.android.tools.build:gradle:7.0.3"
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
 
-            // NOTE: Do not place your application dependencies here; they belong
-            // in the individual module build.gradle files
-        }
+    hiltVersion = '2.39.1'
+    hiltAndroidXVersion = '1.0.0'
+
+    timberVersion = '5.0.1'
+
+
+    generalDependencies = [
+
+            /* Hilt - We are going to use hilt.android which includes
+             * support for Activity and fragment injection so we need to include
+             * the following dependencies */
+            hilt                        : "com.google.dagger:hilt-android:$hiltVersion",
+            hiltKaptCompiler            : "com.google.dagger:hilt-android-compiler:$hiltVersion",
+            // hiltLifecycle                : "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion",
+            hiltKaptAndroidXCompiler    : "androidx.hilt:hilt-compiler:1.0.0",// if you use the support libraries
+//            hiltKaptAndroidCompiler : "com.google.dagger:hilt-android-compiler:$hiltVersion",
+            //Hilt with workManager
+            hiltWorkerManager           : "androidx.hilt:hilt-work:$hiltAndroidXVersion",
+
+            // Timber : Logging library
+            timber: "com.jakewharton.timber:timber:$timberVersion"
+    ]
+}
+buildscript {
+    // ext.kotlin_version = "1.5.31"
+    // This version (1.0.1) of the Compose Compiler requires Kotlin version 1.5.21
+    // but you appear to be using Kotlin version 1.5.31 which is not known to be compatible.
+    ext.kotlin_version = "1.5.21"
+    ext.hiltVersion = "2.39.1"
+    ext.navigationVersion = "2.3.4"
+
+    repositories {
+        google()
+        mavenCentral()
     }
 
-    task clean (type: Delete) {
-        delete rootProject.buildDir
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+
+        // Add the Crashlytics Gradle plugin (be sure to add version
+        // 2.0.0 or later if you built your app with Android Studio 4.1).
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
+
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
