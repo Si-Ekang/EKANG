@@ -5,6 +5,34 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="colorPrimary">#001d57</color>
+    <color name="colorPrimaryDark">#001133</color>
+    <color name="colorAccent">#fed136</color>
+
+
+    <color name="transparent">#00000000</color>
+
+    <!-- Palette -->
+    <color name="black">#000000</color>
+    <color name="dark_grey">#121212</color>
+    <color name="default_dark">#1E1E1E</color>
+    <color name="jet">#222222</color>
+    <color name="carbon">#2D2D2D</color>
+    <color name="petrol">#323232</color>
+    <color name="oil">#333333</color>
+    <color name="black_panther">#444444</color>
+    <color name="panther">#505050</color>
+    <color name="hawk">#555555</color>
+    <color name="sail">#666666</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="iron_light">#DDDDDD</color>
+    <color name="light">#EEEEEE</color>
+    <color name="white">#ffffff</color>
+
 </resources>
