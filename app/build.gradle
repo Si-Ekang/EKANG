@@ -55,6 +55,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
+    //Room
+    implementation rootProject.ext.generalDependencies.roomRuntime
+    kapt rootProject.ext.generalDependencies.roomCompiler
+    implementation rootProject.ext.generalDependencies.roomExtCoroutinesSupport
+
     /* Hilt - We are going to use hilt.android which includes
      * support for Activity and fragment injection so we need to include
      * the following dependencies */
@@ -66,7 +71,7 @@ dependencies {
     implementation rootProject.ext.generalDependencies.hiltWorkerManager
     kapt rootProject.ext.generalDependencies.hiltKaptAndroidXCompiler
 
-    
+
     // Timber : Logging library
     implementation rootProject.ext.generalDependencies.timber
 
