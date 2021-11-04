@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -12,6 +15,11 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+
+        // Enabling multidex support.
+        multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,19 +38,40 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        dataBinding true
         viewBinding true
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    testImplementation 'junit:junit:4.+'
+
+    /* Hilt - We are going to use hilt.android which includes
+     * support for Activity and fragment injection so we need to include
+     * the following dependencies */
+    // Hilt
+    implementation rootProject.ext.generalDependencies.hilt
+    kapt(rootProject.ext.generalDependencies.hiltKaptCompiler)
+//    implementation rootProject.ext.generalDependencies.hiltLifecycle
+    // Worker
+    implementation rootProject.ext.generalDependencies.hiltWorkerManager
+    kapt rootProject.ext.generalDependencies.hiltKaptAndroidXCompiler
+
+    
+    // Timber : Logging library
+    implementation rootProject.ext.generalDependencies.timber
+
+
+    testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
