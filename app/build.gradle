@@ -6,15 +6,20 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def buildDateTime =
+        project.hasProperty('devBuild')
+                ? 100
+                : new Date().format('yyMMddHHmm').toInteger()
+
 android {
-    compileSdk 31
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.siekang"
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+        versionCode buildDateTime
+        versionName rootProject.ext.versionName
 
         // Enabling multidex support.
         multiDexEnabled true

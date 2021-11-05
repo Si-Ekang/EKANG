@@ -1,5 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 ext {
+    minSdkVersion = 21
+    targetSdkVersion = 31
+    compileSdkVersion = 31
+    buildToolsVersion = "30.0.3"
+
+    // version information
+    versionMajor = 1
+    versionMinor = 0
+    versionPatch = 0
+    versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+
     roomVersion = '2.3.0'
 
     hiltVersion = '2.39.1'
