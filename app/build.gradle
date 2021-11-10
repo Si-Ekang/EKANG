@@ -60,10 +60,42 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
+    /////////////////////////////
+    // General Dependencies
+    /////////////////////////////
+    //Kotlin
+    implementation rootProject.ext.generalDependencies.kotlinCoroutines
+    implementation rootProject.ext.generalDependencies.kotlinCoroutinesAndroid
+    implementation rootProject.ext.generalDependencies.kotlinParcelize
+
+    // KTX framework
+    implementation rootProject.ext.generalDependencies.activityKTX
+    implementation rootProject.ext.generalDependencies.fragmentKTX
+    implementation rootProject.ext.generalDependencies.navigationKTX
+    implementation rootProject.ext.generalDependencies.navigationFragmentKTX
+
+    // AndroidX
+    implementation rootProject.ext.generalDependencies.core
+    implementation rootProject.ext.generalDependencies.appcompat
+    implementation rootProject.ext.generalDependencies.material
+    implementation rootProject.ext.generalDependencies.palette
+    implementation rootProject.ext.generalDependencies.constraintLayout
+    implementation rootProject.ext.generalDependencies.navigationFragment
+    implementation rootProject.ext.generalDependencies.navigationUi
+    implementation rootProject.ext.generalDependencies.recyclerView
+    implementation rootProject.ext.generalDependencies.cardView
+
     //Room
     implementation rootProject.ext.generalDependencies.roomRuntime
     kapt rootProject.ext.generalDependencies.roomCompiler
     implementation rootProject.ext.generalDependencies.roomExtCoroutinesSupport
+
+    //Lifecycle
+    implementation rootProject.ext.generalDependencies.lifecycleViewModel
+    implementation rootProject.ext.generalDependencies.lifecycleLiveData
+    implementation rootProject.ext.generalDependencies.lifecycleRuntime
+    kapt rootProject.ext.generalDependencies.lifecycleCompiler
+    implementation rootProject.ext.generalDependencies.lifecycleService
 
     /* Hilt - We are going to use hilt.android which includes
      * support for Activity and fragment injection so we need to include
