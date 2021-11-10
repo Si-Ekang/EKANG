@@ -17,6 +17,7 @@
             android:name=".ui.splashscreen.SplashScreenActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.SIEKang.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +26,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.mainactivity.MainActivity" />
+        <activity
+            android:name=".ui.mainactivity.MainActivity"
+            android:launchMode="singleTask" />
 
     </application>
 

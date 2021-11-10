@@ -38,6 +38,7 @@ class SplashScreenActivity : AppCompatActivity(),
             delay(TimeUnit.SECONDS.toMillis(3))
 
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+            finish()
         }
     }
 }
