@@ -20,6 +20,8 @@ out/
 # Gradle files
 .gradle/
 build/
+# The following archive is necessary for running scripts with `gradlew`
+!gradle/wrapper/gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
