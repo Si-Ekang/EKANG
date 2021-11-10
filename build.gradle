@@ -39,6 +39,11 @@ ext {
 
     timberVersion = '5.0.1'
 
+    //Tests
+    junitVersion = '4.13.2'
+    testJUnitVersion = '1.1.3'
+    testEspressoVersion = '3.4.0'
+
 
     generalDependencies = [
             // Kotlin
@@ -91,7 +96,19 @@ ext {
             // Timber : Logging library
             timber                  : "com.jakewharton.timber:timber:$timberVersion"
     ]
+
+    testDependencies = [
+
+            junit                  : "junit:junit:$junitVersion",
+            testJUnit              : "androidx.test.ext:junit:$testJUnitVersion",
+            espresso               : "androidx.test.espresso:espresso-core:$testEspressoVersion",
+
+            hiltAndroidTesting     : "com.google.dagger:hilt-android-testing:$hiltVersion",
+            hiltKaptAndroidCompiler: "com.google.dagger:hilt-android-compiler:$hiltVersion",
+            hiltKaptCompiler       : "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
+    ]
 }
+
 buildscript {
     // ext.kotlin_version = "1.5.31"
     // This version (1.0.1) of the Compose Compiler requires Kotlin version 1.5.21

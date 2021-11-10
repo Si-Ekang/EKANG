@@ -113,7 +113,15 @@ dependencies {
     implementation rootProject.ext.generalDependencies.timber
 
 
-    testImplementation 'junit:junit:'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    /////////////////////////////
+    // Tests Dependencies
+    /////////////////////////////
+    testImplementation rootProject.ext.testDependencies.junit
+    androidTestImplementation rootProject.ext.testDependencies.testJUnit
+    androidTestImplementation rootProject.ext.testDependencies.espresso
+
+    androidTestImplementation rootProject.ext.testDependencies.hiltAndroidTesting
+    kaptAndroidTest rootProject.ext.testDependencies.hiltKaptAndroidCompiler
+    kaptAndroidTest rootProject.ext.testDependencies.hiltKaptCompiler
 }
