@@ -77,3 +77,9 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task getVersion {
+    doLast {
+        print rootProject.ext.versionName
+    }
+}
