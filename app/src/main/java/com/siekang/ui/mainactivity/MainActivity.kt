@@ -1,57 +1,72 @@
 package com.siekang.ui.mainactivity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.siekang.R
 import com.siekang.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private var _viewBinding: ActivityMainBinding? = null
+    private val binding get() = _viewBinding!!
+
+    private lateinit var bottomNavView: BottomNavigationView
+
+    private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*setSupportActionBar(binding.toolbar)
+        bottomNavView = binding.layoutContentMain.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_library,
+                R.id.navigation_notifications,
+                R.id.navigation_profile
+            )
+        )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
+        bottomNavView.setupWithNavController(navController)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
-    }
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            Timber.d(destination.toString())
+        }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        bottomNavView.setOnNavigationItemSelectedListener {
+            Timber.e("Selected ${it.title}")
+            if (it.itemId != bottomNavView.selectedItemId)
+                NavigationUI.onNavDestinationSelected(
+                    it,
+                    navController
+                )
+            true
         }
     }
 
-    /*override fun onSupportNavigateUp(): Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }*/
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _viewBinding = null
+    }
 }
