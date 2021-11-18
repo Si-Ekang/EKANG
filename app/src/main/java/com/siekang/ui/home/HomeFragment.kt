@@ -1,15 +1,16 @@
 package com.siekang.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.siekang.R
 import com.siekang.databinding.FragmentHomeBinding
-import com.siekang.databinding.FragmentLibraryBinding
-import com.siekang.databinding.FragmentProfileBinding
+import com.siekang.ui.quizz.QuizzActivity
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
 
     private var _viewBinding: FragmentHomeBinding? = null
     private val binding get() = _viewBinding!!
@@ -18,6 +19,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +31,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnStartQuizz.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -36,4 +40,12 @@ class HomeFragment : Fragment() {
         _viewBinding = null
     }
 
+    @ExperimentalStdlibApi
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.btn_start_quizz -> {
+                startActivity(Intent(requireActivity(), QuizzActivity::class.java))
+            }
+        }
+    }
 }
