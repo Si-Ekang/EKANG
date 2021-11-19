@@ -1,5 +1,6 @@
 package com.siekang.ui.quizz
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.siekang.data.local.model.Quizz
 import com.siekang.databinding.FragmentQuizzBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+
 
 @AndroidEntryPoint
 class QuizzFragment : Fragment(), View.OnClickListener {
@@ -37,6 +39,26 @@ class QuizzFragment : Fragment(), View.OnClickListener {
     private var selectedAnswer: String? = null
 
     private lateinit var item: Quizz
+
+    /**
+     * passing data between fragments
+     */
+    interface OnCorrectAnswer {
+        fun correctAnswer()
+    }
+
+    private var listener: OnCorrectAnswer? = null
+
+    @ExperimentalStdlibApi
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is OnCorrectAnswer) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement ${QuizzActivity.TAG}.OnCorrectAnswer");
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,13 +105,28 @@ class QuizzFragment : Fragment(), View.OnClickListener {
             Timber.d("${binding.tbGroup.getCheckedRadioButtonId()}")
 
             selectedAnswer =
-                (requireActivity().findViewById<RadioButton>(binding.tbGroup.getCheckedRadioButtonId())).text.toString()
+                (requireActivity()
+                    .findViewById<RadioButton>(binding.tbGroup.getCheckedRadioButtonId()))
+                    .text
+                    .toString()
 
 
             Timber.e("selected answer : $selectedAnswer")
 
             mViewModel.isAnswerSelected(true)
         })
+    }
+
+    fun checkAnswers() {
+        Timber.e("checkAnswers()")
+
+        if (item.correctAnswer != selectedAnswer) {
+            // Not correct
+            Timber.e("wrong answer")
+            return
+        } else {
+            listener?.correctAnswer()
+        }
     }
 
     override fun onClick(view: View?) {

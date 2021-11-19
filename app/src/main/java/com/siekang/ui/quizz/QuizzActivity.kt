@@ -16,7 +16,7 @@ import java.util.*
 
 @ExperimentalStdlibApi
 @AndroidEntryPoint
-class QuizzActivity : AppCompatActivity(), View.OnClickListener {
+class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.OnCorrectAnswer {
 
     private var _viewBinding: ActivityQuizzBinding? = null
     private val binding get() = _viewBinding!!
@@ -45,11 +45,11 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initViews() {
-        binding.progressBarQuestionProgression.progress = 0
         binding.progressBarQuestionProgression.max = QuizzViewModel.MAX_QUESTION_COUNT
+        binding.progressBarQuestionProgression.progress = 1
 
         binding.tvQuestionCount.text = getString(
-            R.string.question_count_status, 0, QuizzViewModel.MAX_QUESTION_COUNT
+            R.string.question_count_status, 1, QuizzViewModel.MAX_QUESTION_COUNT
         )
     }
 
@@ -90,7 +90,7 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener {
                 // Update question count view
                 binding.tvQuestionCount.text = getString(
                     R.string.question_count_status,
-                    position,
+                    position + 1,
                     QuizzViewModel.MAX_QUESTION_COUNT
                 )
             }
@@ -126,8 +126,32 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_validate -> {
-                binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
+                if (null != mFragmentList) {
+                    (mFragmentList!![binding.viewPager2.currentItem] as QuizzFragment).checkAnswers()
+                }
             }
         }
+    }
+
+    override fun correctAnswer() {
+        // Check if "current position" equal "number of elements
+        if (binding.viewPager2.currentItem
+            != binding.viewPager2.adapter?.itemCount?.minus(
+                1
+            )
+        ) {
+            Timber.e("onClick - Update")
+            binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
+            binding.progressBarQuestionProgression.progress =
+                binding.progressBarQuestionProgression.progress + 1
+        } else {
+            // Finished
+            Timber.e("onClick - Finished")
+            finish()
+        }
+    }
+
+    companion object {
+        val TAG: String = QuizzActivity::class.java.simpleName
     }
 }

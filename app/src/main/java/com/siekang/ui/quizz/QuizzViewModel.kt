@@ -35,6 +35,7 @@ class QuizzViewModel @Inject constructor() : ViewModel() {
         isAnswerSelected.value = isSelected
     }
 
+
     companion object {
         val MAX_QUESTION_COUNT: Int = 15
     }
