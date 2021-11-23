@@ -86,8 +86,8 @@ class QuizzFragment : Fragment(), View.OnClickListener {
 
         tbGroup = binding.tbGroup
 
-        binding.quizz = item
-        binding.ivQuizzPicture.setImageResource(item.quizImage)
+        binding.quiz = item
+        binding.ivQuizPicture.setImageResource(item.quizImage)
 
         initViewModelObservers()
     }

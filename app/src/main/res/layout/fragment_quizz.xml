@@ -8,7 +8,7 @@
         <import type="android.text.TextUtils" />
 
         <variable
-            name="quizz"
+            name="quiz"
             type="com.siekang.data.local.model.Quiz" />
 
     </data>
@@ -23,13 +23,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text='@{!TextUtils.isEmpty(quizz.question) ? quizz.question : "Error" }'
+            android:text='@{!TextUtils.isEmpty(quiz.question) ? quiz.question : "Error" }'
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText"
             tools:text="Dummy question : What is the capital of France" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_quizz_picture"
+            android:id="@+id/iv_quiz_picture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -45,25 +45,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_quizz_picture">
+            app:layout_constraintTop_toBottomOf="@id/iv_quiz_picture">
 
             <TableRow>
 
                 <RadioButton
-                    android:id="@+id/rb_quizz_answer1"
+                    android:id="@+id/rb_quiz_answer1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text='@{quizz.possibleAnswers[0]}'
+                    android:text='@{quiz.possibleAnswers[0]}'
                     tools:ignore="HardcodedText"
                     tools:text="Answer 2" />
 
                 <RadioButton
-                    android:id="@+id/rb_quizz_answer2"
+                    android:id="@+id/rb_quiz_answer2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text='@{quizz.possibleAnswers[1]}'
+                    android:text='@{quiz.possibleAnswers[1]}'
                     tools:ignore="HardcodedText"
                     tools:text="Answer 2" />
             </TableRow>
@@ -71,20 +71,20 @@
             <TableRow>
 
                 <RadioButton
-                    android:id="@+id/rb_quizz_answer3"
+                    android:id="@+id/rb_quiz_answer3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text='@{quizz.possibleAnswers[2]}'
+                    android:text='@{quiz.possibleAnswers[2]}'
                     tools:ignore="HardcodedText"
                     tools:text="Answer 3" />
 
                 <RadioButton
-                    android:id="@+id/rb_quizz_answer4"
+                    android:id="@+id/rb_quiz_answer4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text='@{quizz.possibleAnswers[3]}'
+                    android:text='@{quiz.possibleAnswers[3]}'
                     tools:ignore="HardcodedText"
                     tools:text="Answer 4" />
             </TableRow>

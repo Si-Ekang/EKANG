@@ -5,6 +5,8 @@ import com.siekang.data.local.model.Quiz
 
 object Constants {
 
+    const val BASE_ENDPOINT_SI_EKANG: String = "https://ekang-api.herokuapp.com/v0/"
+
     @ExperimentalStdlibApi
     fun getPreloadDtoQuizzes(): List<Quiz> {
         val quizzes = mutableListOf<Quiz>() as ArrayList
@@ -12,71 +14,81 @@ object Constants {
         // 1
         quizzes.add(
             Quiz(
+                "0",
                 "What is the capital of France ? ",
                 R.drawable.ic_home,
                 "Paris",
-                buildList(4) {
-                    add("Tokyo")
-                    add("Paris")
-                    add("New-York")
-                    add("Sydney")
-                })
+                listOf(
+                    "Tokyo",
+                    "Paris",
+                    "New-York",
+                    "Sydney"
+                )
+            )
         )
 
         // 2
         quizzes.add(
             Quiz(
+                "1",
                 "What is the capital of Japan ? ",
                 R.drawable.ic_home,
                 "Tokyo",
-                buildList(4) {
-                    add("Tokyo")
-                    add("Paris")
-                    add("New-York")
-                    add("Sydney")
-                })
+                listOf(
+                    "Tokyo",
+                    "Paris",
+                    "New-York",
+                    "Sydney"
+                )
+            )
         )
 
         // 3
         quizzes.add(
             Quiz(
+                "2",
                 "Which company has been created by Elon Musk ? ",
                 R.drawable.ic_home,
                 "Tesla",
-                buildList(4) {
-                    add("Chrysler")
-                    add("Renault")
-                    add("Tesla")
-                    add("General Motors")
-                })
+                listOf(
+                    "Chrysler",
+                    "Renault",
+                    "Tesla",
+                    "General Motors"
+                )
+            )
         )
 
         // 4
         quizzes.add(
             Quiz(
+                "3",
                 "Where is the Sahara Desert",
                 R.drawable.ic_home,
                 "Africa",
-                buildList(4) {
-                    add("South America")
-                    add("Asia")
-                    add("Europe")
-                    add("Africa")
-                })
+                listOf(
+                    "South America",
+                    "Asia",
+                    "Europe",
+                    "Africa"
+                )
+            )
         )
 
         // 5
         quizzes.add(
             Quiz(
+                "4",
                 "What is the capital of the United States of America ? ",
                 R.drawable.ic_home,
                 "New-York",
-                buildList(4) {
-                    add("Tokyo")
-                    add("Paris")
-                    add("New-York")
-                    add("Sydney")
-                })
+                listOf(
+                    "Tokyo",
+                    "Paris",
+                    "New-York",
+                    "Sydney"
+                )
+            )
         )
 
         return quizzes

@@ -42,6 +42,8 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
 
         setupQuizzList()
         initViewPager()
+
+        mViewModel.getQuestions()
     }
 
     private fun initViews() {

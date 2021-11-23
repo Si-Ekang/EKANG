@@ -4,6 +4,7 @@ import com.siekang.data.IRepository
 import com.siekang.data.RepositoryImpl
 import com.siekang.data.local.DbImpl
 import com.siekang.data.local.SiEkangDatabase
+import com.siekang.data.remote.ApiImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,22 +18,18 @@ object AppHelperModule {
     @Provides
     fun provideDbHelper(appDatabase: SiEkangDatabase) =
         DbImpl(
-           appDatabase.getUserDao() /*,
-            appDatabase.getWeatherDao()*/
+           appDatabase.getUserDao()
+
         )
 
-    /*@Provides
+    @Provides
     fun provideApiHelper() =
         ApiImpl(
-            ApiModule.provideArtistsAPIService(),
-            ApiModule.provideGoogleAPIService(),
-            ApiModule.provideYoutubeApiService(),
-            ApiModule.provideWeatherApiService(),
-            ApiModule.proWeatherBulkApiService()
-        )*/
+            ApiModule.provideSiEkangApiService()
+        )
 
     @Provides
     @ViewModelScoped // this is new
-    fun provideRepository(dbImpl: DbImpl/*, apiImpl: ApiImpl*/) =
-        RepositoryImpl(dbImpl/*, apiImpl*/) as IRepository
+    fun provideRepository(dbImpl: DbImpl, apiImpl: ApiImpl) =
+        RepositoryImpl(dbImpl, apiImpl) as IRepository
 }

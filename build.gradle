@@ -37,6 +37,12 @@ ext {
     hiltVersion = '2.40.1'
     hiltAndroidXVersion = '1.0.0'
 
+    retrofit2Version = '2.9.0'
+    okhttpBomVersion = '5.0.0-alpha.2'
+    okhttpLoggingVersion = '5.0.0-alpha.2'
+
+    moshiVersion = '1.12.0'
+
     timberVersion = '5.0.1'
 
     //Tests
@@ -92,6 +98,20 @@ ext {
 //            hiltKaptAndroidCompiler : "com.google.dagger:hilt-android-compiler:$hiltVersion",
             //Hilt with workManager
             hiltWorkerManager       : "androidx.hilt:hilt-work:$hiltAndroidXVersion",
+
+            /* Retrofit using RxJava3, Okhttp, Okhttp logging interceptor, Moshi  */
+            retrofit                    : "com.squareup.retrofit2:retrofit:$retrofit2Version",
+            retrofitConverterMoshi      : "com.squareup.retrofit2:converter-moshi:$retrofit2Version",
+
+            // OkHttp
+            okHttpBom                   : "com.squareup.okhttp3:okhttp-bom:$okhttpBomVersion",
+            okHttp                      : "com.squareup.okhttp3:okhttp",
+            okHttpLogging               : "com.squareup.okhttp3:logging-interceptor",
+
+            // Moshi
+            moshi                       : "com.squareup.moshi:moshi:$moshiVersion",
+            moshiKotlin                 : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+
 
             // Timber : Logging library
             timber                  : "com.jakewharton.timber:timber:$timberVersion"
