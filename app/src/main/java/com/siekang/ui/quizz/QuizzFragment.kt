@@ -9,7 +9,7 @@ import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.siekang.core.views.ToggleButtonGroupTableLayout
-import com.siekang.data.local.model.Quizz
+import com.siekang.data.local.model.Quiz
 import com.siekang.databinding.FragmentQuizzBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -22,7 +22,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
 
         private const val EXTRA_QUIZZ = "EXTRA_QUIZZ"
 
-        fun newInstance(quizz: Quizz): QuizzFragment {
+        fun newInstance(quizz: Quiz): QuizzFragment {
             val args = Bundle()
             args.putParcelable(EXTRA_QUIZZ, quizz)
             val fragment = QuizzFragment()
@@ -38,7 +38,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
     private val mViewModel: QuizzViewModel by activityViewModels()
     private var selectedAnswer: String? = null
 
-    private lateinit var item: Quizz
+    private lateinit var item: Quiz
 
     /**
      * passing data between fragments
@@ -87,7 +87,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
         tbGroup = binding.tbGroup
 
         binding.quizz = item
-        binding.ivQuizzPicture.setImageResource(item.quizzImage)
+        binding.ivQuizzPicture.setImageResource(item.quizImage)
 
         initViewModelObservers()
     }

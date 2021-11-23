@@ -2,13 +2,13 @@ package com.siekang.data.remote.dto
 
 import androidx.annotation.DrawableRes
 
-data class QuizzDto(
+data class QuizDto(
     val question: String,
-    @DrawableRes val quizzImage: Int,
+    @DrawableRes val quizImage: Int,
     val correctAnswer: String,
     val possibleAnswers: List<String>
 ) {
     override fun toString(): String {
-        return "Quizz(question='$question', quizzImage=$quizzImage, correctAnswer=$correctAnswer, possibleAnswers=$possibleAnswers)"
+        return "QuizDto(question='$question', quizzImage=$quizImage, correctAnswer=$correctAnswer, possibleAnswers=$possibleAnswers)"
     }
 }

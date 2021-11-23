@@ -1,17 +1,17 @@
 package com.siekang.utils
 
 import com.siekang.R
-import com.siekang.data.local.model.Quizz
+import com.siekang.data.local.model.Quiz
 
 object Constants {
 
     @ExperimentalStdlibApi
-    fun getPreloadDtoQuizzes(): List<Quizz> {
-        val quizzes = mutableListOf<Quizz>() as ArrayList
+    fun getPreloadDtoQuizzes(): List<Quiz> {
+        val quizzes = mutableListOf<Quiz>() as ArrayList
 
         // 1
         quizzes.add(
-            Quizz(
+            Quiz(
                 "What is the capital of France ? ",
                 R.drawable.ic_home,
                 "Paris",
@@ -25,7 +25,7 @@ object Constants {
 
         // 2
         quizzes.add(
-            Quizz(
+            Quiz(
                 "What is the capital of Japan ? ",
                 R.drawable.ic_home,
                 "Tokyo",
@@ -39,7 +39,7 @@ object Constants {
 
         // 3
         quizzes.add(
-            Quizz(
+            Quiz(
                 "Which company has been created by Elon Musk ? ",
                 R.drawable.ic_home,
                 "Tesla",
@@ -53,7 +53,7 @@ object Constants {
 
         // 4
         quizzes.add(
-            Quizz(
+            Quiz(
                 "Where is the Sahara Desert",
                 R.drawable.ic_home,
                 "Africa",
@@ -67,7 +67,7 @@ object Constants {
 
         // 5
         quizzes.add(
-            Quizz(
+            Quiz(
                 "What is the capital of the United States of America ? ",
                 R.drawable.ic_home,
                 "New-York",

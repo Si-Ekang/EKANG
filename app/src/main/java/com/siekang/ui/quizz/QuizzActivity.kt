@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.siekang.R
-import com.siekang.data.local.model.Quizz
+import com.siekang.data.local.model.Quiz
 import com.siekang.databinding.ActivityQuizzBinding
 import com.siekang.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,7 +69,7 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
     private fun setupQuizzList() {
         mFragmentList = (mutableListOf<Fragment>() as ArrayList).apply {
 
-            for (element: Quizz in Constants.getPreloadDtoQuizzes()) {
+            for (element: Quiz in Constants.getPreloadDtoQuizzes()) {
                 this.add(QuizzFragment.newInstance(element))
             }
         }
