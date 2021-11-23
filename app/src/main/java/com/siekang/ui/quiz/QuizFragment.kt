@@ -1,4 +1,4 @@
-package com.siekang.ui.quizz
+package com.siekang.ui.quiz
 
 import android.content.Context
 import android.os.Bundle
@@ -16,16 +16,16 @@ import timber.log.Timber
 
 
 @AndroidEntryPoint
-class QuizzFragment : Fragment(), View.OnClickListener {
+class QuizFragment : Fragment(), View.OnClickListener {
 
     companion object {
 
         private const val EXTRA_QUIZZ = "EXTRA_QUIZZ"
 
-        fun newInstance(quizz: Quiz): QuizzFragment {
+        fun newInstance(quizz: Quiz): QuizFragment {
             val args = Bundle()
             args.putParcelable(EXTRA_QUIZZ, quizz)
-            val fragment = QuizzFragment()
+            val fragment = QuizFragment()
             fragment.arguments = args
             return fragment
         }
@@ -35,7 +35,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
     private val binding get() = _viewBinding!!
     private lateinit var tbGroup: ToggleButtonGroupTableLayout
 
-    private val mViewModel: QuizzViewModel by activityViewModels()
+    private val mViewModel: QuizViewModel by activityViewModels()
     private var selectedAnswer: String? = null
 
     private lateinit var item: Quiz
@@ -56,7 +56,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
         if (context is OnCorrectAnswer) {
             listener = context
         } else {
-            throw ClassCastException("$context must implement ${QuizzActivity.TAG}.OnCorrectAnswer");
+            throw ClassCastException("$context must implement ${QuizActivity.TAG}.OnCorrectAnswer");
         }
     }
 

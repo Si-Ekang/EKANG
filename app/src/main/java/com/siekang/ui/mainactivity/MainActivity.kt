@@ -1,6 +1,7 @@
 package com.siekang.ui.mainactivity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -14,7 +15,7 @@ import timber.log.Timber
 import java.util.regex.Pattern
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
     private var _viewBinding: ActivityMainBinding? = null
     private val binding get() = _viewBinding!!
@@ -25,6 +26,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+
+    /////////////////////////////////////
+    //
+    // OVERRIDE
+    //
+    /////////////////////////////////////
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavView.setOnNavigationItemSelectedListener {
             Timber.e("Selected ${it.title}")
+            unFocusEditText()
+
             if (it.itemId != bottomNavView.selectedItemId)
                 NavigationUI.onNavDestinationSelected(
                     it,
@@ -65,6 +74,8 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
+
+        binding.layoutContentToolbar.tietWordTranslate.onFocusChangeListener = this
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -78,6 +89,11 @@ class MainActivity : AppCompatActivity() {
         _viewBinding = null
     }
 
+    /////////////////////////////////////
+    //
+    // CLASSES METHODS
+    //
+    /////////////////////////////////////
     private fun MaterialToolbar.setTitle(label: CharSequence?, arguments: Bundle?) {
         if (label != null) {
             // Fill in the data pattern with the args to build a valid URI
@@ -100,4 +116,31 @@ class MainActivity : AppCompatActivity() {
             setTitle(title)
         }
     }
+
+    private fun unFocusEditText() {
+        if (binding.layoutContentToolbar.tietWordTranslate.hasFocus()) {
+            binding.layoutContentToolbar.tietWordTranslate.clearFocus()
+        }
+    }
+
+    fun goToHome(view: View) {
+        if (R.id.navigation_home != navController.currentDestination?.id) {
+            navController.navigate(R.id.navigation_home)
+        }
+    }
+
+
+    /////////////////////////////////////
+    //
+    // IMPLEMENTS
+    //
+    /////////////////////////////////////
+    override fun onFocusChange(view: View?, hasFocus: Boolean) {
+        if (hasFocus) {
+            Timber.d("EditText has focus")
+        } else {
+            Timber.e("EditText lost focus")
+        }
+    }
+
 }

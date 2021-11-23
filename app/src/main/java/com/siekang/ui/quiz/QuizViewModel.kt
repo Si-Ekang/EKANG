@@ -1,4 +1,4 @@
-package com.siekang.ui.quizz
+package com.siekang.ui.quiz
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +15,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 @HiltViewModel
-class QuizzViewModel @Inject constructor(private val repository: IRepository) : ViewModel() {
+class QuizViewModel @Inject constructor(private val repository: IRepository) : ViewModel() {
 
     private val shouldShowError: MutableLiveData<Boolean> = MutableLiveData()
     private val shouldDisplayQuiz: MutableLiveData<Boolean> = MutableLiveData()

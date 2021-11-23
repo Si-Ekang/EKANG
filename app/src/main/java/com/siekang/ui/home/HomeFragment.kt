@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.siekang.R
 import com.siekang.databinding.FragmentHomeBinding
-import com.siekang.ui.quizz.QuizzActivity
+import com.siekang.ui.quiz.QuizActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -44,7 +44,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_start_quizz -> {
-                startActivity(Intent(requireActivity(), QuizzActivity::class.java))
+                startActivity(Intent(requireActivity(), QuizActivity::class.java))
             }
         }
     }

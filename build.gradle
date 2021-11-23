@@ -134,8 +134,8 @@ buildscript {
     // This version (1.0.1) of the Compose Compiler requires Kotlin version 1.5.21
     // but you appear to be using Kotlin version 1.5.31 which is not known to be compatible.
     ext.kotlin_version = "1.5.21"
-    ext.hiltVersion = "2.39.1"
-    ext.navigationVersion = "2.3.4"
+    ext.hiltVersion = "2.40.1"
+    ext.navigationVersion = "2.3.5"
 
     repositories {
         google()

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.quizz.QuizzActivity">
+    tools:context=".ui.quiz.QuizActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_progression_container"
