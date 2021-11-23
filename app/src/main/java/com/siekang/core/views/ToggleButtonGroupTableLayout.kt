@@ -1,6 +1,8 @@
 package com.siekang.core.views
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +11,13 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textview.MaterialTextView
 import com.siekang.R
 import timber.log.Timber
 
 
+@SuppressLint("NewApi")
 class ToggleButtonGroupTableLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -20,11 +25,14 @@ class ToggleButtonGroupTableLayout @JvmOverloads constructor(
 ) : TableLayout(context, attrs), View.OnClickListener {
 
     private val TAG = "ToggleButtonGroupTableLayout"
+    private var mContext: Context? = null
 
     private var tbGroup: ToggleButtonGroupTableLayout? = null
     private var activeRadioButton: RadioButton? = null
 
-    val radioButtonLiveData: MutableLiveData<Int> = MutableLiveData()
+    private var activeCardView: MaterialCardView? = null
+
+    private val radioButtonLiveData: MutableLiveData<Int> = MutableLiveData()
     fun getRadioButtonLiveData(): LiveData<Int> {
         return radioButtonLiveData
     }
@@ -33,6 +41,7 @@ class ToggleButtonGroupTableLayout @JvmOverloads constructor(
 
     init {
         Timber.d("Kotlin init block called.")
+        this.mContext = context
     }
 
     override fun onFinishInflate() {
@@ -66,25 +75,52 @@ class ToggleButtonGroupTableLayout @JvmOverloads constructor(
         val c: Int = tr.childCount
         for (i in 0 until c) {
             val v: View = tr.getChildAt(i)
-            (v as? RadioButton)?.setOnClickListener(this)
+            // (v as? RadioButton)?.setOnClickListener(this)
+            (v as? MaterialCardView)?.setOnClickListener(this)
         }
     }
 
     fun getCheckedRadioButtonId(): Int {
-        return if (activeRadioButton != null) {
+        /*return if (activeRadioButton != null) {
             activeRadioButton!!.id
+        } else -1*/
+
+        return if (activeCardView != null) {
+            activeCardView!!.id
         } else -1
     }
 
 
     override fun onClick(view: View) {
-        val rb = view as RadioButton
+        /*val rb = view as RadioButton
         if (activeRadioButton != null) {
             activeRadioButton!!.isChecked = false
         }
         rb.isChecked = true
-        activeRadioButton = rb
+        activeRadioButton = rb*/
 
-        radioButtonLiveData.value = activeRadioButton?.id
+        val cardView = view as MaterialCardView
+        if (activeCardView != null) {
+            activeCardView!!.isSelected = false
+            uncheckCardView()
+        }
+
+        cardView.isSelected = true
+        checkCardView(cardView)
+        activeCardView = cardView
+
+        radioButtonLiveData.value = activeCardView?.id
+    }
+
+    private fun uncheckCardView() {
+        activeCardView?.strokeWidth = 0
+        activeCardView?.setStrokeColor(ColorStateList.valueOf(mContext?.getColor(R.color.transparent)!!))
+        (activeCardView?.getChildAt(0) as MaterialTextView).setTextColor(mContext?.getColor(R.color.black)!!)
+    }
+
+    private fun checkCardView(cardView: MaterialCardView) {
+        cardView.strokeWidth = 2
+        cardView.setStrokeColor(ColorStateList.valueOf(mContext?.getColor(R.color.colorAccent)!!))
+        (cardView.getChildAt(0) as MaterialTextView).setTextColor(mContext?.getColor(R.color.colorAccent)!!)
     }
 }

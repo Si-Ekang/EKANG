@@ -40,7 +40,7 @@
             tools:src="@drawable/ic_home" />
 
 
-        <com.siekang.core.views.ToggleButtonGroupTableLayout
+        <!--<com.siekang.core.views.ToggleButtonGroupTableLayout
             android:id="@+id/tb_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +88,102 @@
                     tools:ignore="HardcodedText"
                     tools:text="Answer 4" />
             </TableRow>
-        </com.siekang.core.views.ToggleButtonGroupTableLayout>
+        </com.siekang.core.views.ToggleButtonGroupTableLayout>-->
 
+        <com.siekang.core.views.ToggleButtonGroupTableLayout
+            android:id="@+id/tb_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_quizz_picture">
+
+            <TableRow>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rb_quizz_answer1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:strokeWidth="2dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="Answer 1">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text='@{quizz.possibleAnswers[0]}'
+                        tools:text="Answer 1" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rb_quizz_answer2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:strokeWidth="2dp"
+                    tools:ignore="HardcodedText"
+                    tools:strokeColor="@color/colorAccent"
+                    tools:text="Answer 2">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text='@{quizz.possibleAnswers[1]}'
+                        tools:text="Answer 2" />
+                </com.google.android.material.card.MaterialCardView>
+            </TableRow>
+
+            <TableRow>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rb_quizz_answer3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:strokeWidth="2dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="Answer 3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text='@{quizz.possibleAnswers[2]}'
+                        tools:text="Answer 3" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rb_quizz_answer4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:strokeWidth="2dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="Answer 4">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text='@{quizz.possibleAnswers[3]}'
+                        tools:text="Answer 4" />
+                </com.google.android.material.card.MaterialCardView>
+            </TableRow>
+        </com.siekang.core.views.ToggleButtonGroupTableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

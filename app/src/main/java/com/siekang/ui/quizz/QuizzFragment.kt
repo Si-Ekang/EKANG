@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textview.MaterialTextView
 import com.siekang.core.views.ToggleButtonGroupTableLayout
 import com.siekang.data.local.model.Quizz
 import com.siekang.databinding.FragmentQuizzBinding
@@ -104,12 +105,20 @@ class QuizzFragment : Fragment(), View.OnClickListener {
 
             Timber.d("${binding.tbGroup.getCheckedRadioButtonId()}")
 
-            selectedAnswer =
+            /*selectedAnswer =
                 (requireActivity()
                     .findViewById<RadioButton>(binding.tbGroup.getCheckedRadioButtonId()))
                     .text
-                    .toString()
+                    .toString()*/
 
+            val cardView =
+                (requireActivity().findViewById<MaterialCardView>(
+                    binding.tbGroup.getCheckedRadioButtonId()
+                ))
+
+            val textView = cardView.getChildAt(0) as MaterialTextView
+
+            selectedAnswer = textView.text.toString()
 
             Timber.e("selected answer : $selectedAnswer")
 
