@@ -46,6 +46,4 @@
             tools:ignore="HardcodedText"
             tools:text="Start a new Quizz" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
