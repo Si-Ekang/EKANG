@@ -10,13 +10,13 @@
         <variable
             name="quiz"
             type="com.siekang.data.local.model.Quiz" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="@dimen/extra_small_margin">
+        android:elevation="@dimen/extra_small_margin"
+        tools:background="@color/default_dark">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_question"
@@ -42,58 +42,8 @@
             app:layout_constraintBottom_toTopOf="@id/tb_group"
             app:layout_constraintTop_toBottomOf="@id/tv_question"
             app:srcCompat="@drawable/ic_home"
-            tools:src="@drawable/ic_home" />
-
-
-        <!--<com.siekang.core.views.ToggleButtonGroupTableLayout
-            android:id="@+id/tb_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_quiz_picture">
-
-            <TableRow>
-
-                <RadioButton
-                    android:id="@+id/rb_quiz_answer1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text='@{quiz.possibleAnswers[0]}'
-                    tools:ignore="HardcodedText"
-                    tools:text="Answer 2" />
-
-                <RadioButton
-                    android:id="@+id/rb_quiz_answer2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text='@{quiz.possibleAnswers[1]}'
-                    tools:ignore="HardcodedText"
-                    tools:text="Answer 2" />
-            </TableRow>
-
-            <TableRow>
-
-                <RadioButton
-                    android:id="@+id/rb_quiz_answer3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text='@{quiz.possibleAnswers[2]}'
-                    tools:ignore="HardcodedText"
-                    tools:text="Answer 3" />
-
-                <RadioButton
-                    android:id="@+id/rb_quiz_answer4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text='@{quiz.possibleAnswers[3]}'
-                    tools:ignore="HardcodedText"
-                    tools:text="Answer 4" />
-            </TableRow>
-        </com.siekang.core.views.ToggleButtonGroupTableLayout>-->
+            tools:src="@drawable/ic_home"
+            tools:tint="@color/white" />
 
         <com.siekang.core.views.ToggleButtonGroupTableLayout
             android:id="@+id/tb_group"
@@ -108,11 +58,12 @@
                     android:id="@+id/rb_quiz_answer1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin"
                     android:layout_weight="1"
+                    app:cardBackgroundColor="@color/red"
                     app:cardCornerRadius="8dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
-                    app:strokeWidth="2dp"
                     tools:ignore="HardcodedText"
                     tools:text="Answer 1">
 
@@ -120,7 +71,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_margin="@dimen/medium_margin"
                         android:text='@{quiz.possibleAnswers[0]}'
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         tools:text="Answer 1" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -129,11 +84,12 @@
                     android:id="@+id/rb_quiz_answer2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin"
                     android:layout_weight="1"
+                    app:cardBackgroundColor="@color/blue"
                     app:cardCornerRadius="8dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
-                    app:strokeWidth="2dp"
                     tools:ignore="HardcodedText"
                     tools:strokeColor="@color/colorAccent"
                     tools:text="Answer 2">
@@ -142,7 +98,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_margin="@dimen/medium_margin"
                         android:text='@{quiz.possibleAnswers[1]}'
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         tools:text="Answer 2" />
                 </com.google.android.material.card.MaterialCardView>
             </TableRow>
@@ -153,11 +113,12 @@
                     android:id="@+id/rb_quiz_answer3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin"
                     android:layout_weight="1"
+                    app:cardBackgroundColor="@color/green"
                     app:cardCornerRadius="8dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
-                    app:strokeWidth="2dp"
                     tools:ignore="HardcodedText"
                     tools:text="Answer 3">
 
@@ -165,7 +126,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_margin="@dimen/medium_margin"
                         android:text='@{quiz.possibleAnswers[2]}'
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         tools:text="Answer 3" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -173,11 +138,12 @@
                     android:id="@+id/rb_quiz_answer4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin"
                     android:layout_weight="1"
+                    app:cardBackgroundColor="@color/yellow"
                     app:cardCornerRadius="8dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
-                    app:strokeWidth="2dp"
                     tools:ignore="HardcodedText"
                     tools:text="Answer 4">
 
@@ -185,7 +151,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_margin="@dimen/medium_margin"
                         android:text='@{quiz.possibleAnswers[3]}'
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:shadowColor="@color/quiz_item_selected_text_color"
+                        tools:shadowDx="-5"
+                        tools:shadowDy="5"
+                        tools:shadowRadius="0.5"
                         tools:text="Answer 4" />
                 </com.google.android.material.card.MaterialCardView>
             </TableRow>

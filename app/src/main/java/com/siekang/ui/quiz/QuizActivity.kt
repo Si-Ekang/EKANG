@@ -1,9 +1,12 @@
 package com.siekang.ui.quiz
 
+import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +53,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnC
         mViewModel.getQuestions()
     }
 
+    @SuppressLint("NewApi")
     private fun initViews() {
         /*binding.progressBarQuestionProgression.max = QuizViewModel.MAX_QUESTION_COUNT
         binding.progressBarQuestionProgression.progress = 1*/
@@ -121,16 +125,6 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnC
 //        binding.contentMainHeader.viewPager2.setOnTouchListener(OnTouchListener { arg0, arg1 -> true })
         // Ref : https://stackoverflow.com/questions/7814017/is-it-possible-to-disable-scrolling-on-a-viewpager
         binding.viewPager2.isUserInputEnabled = false
-
-        binding.viewPager2.setPageTransformer { page, _ ->
-            page.alpha = 0f
-            page.visibility = View.VISIBLE
-
-            // Start Animation for a short period of time
-            page.animate()
-                .alpha(1f).duration =
-                page.resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
-        }
     }
 
     override fun onClick(view: View?) {
@@ -154,11 +148,8 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnC
             Timber.e("onClick - Update")
 
             // Change viewpager current view
-            binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
-
-            // Apply update animation to porgress bar
-            /*binding.progressBarQuestionProgression.progress =
-                binding.progressBarQuestionProgression.progress + 1*/
+            binding.viewPager2.setCurrentItem(binding.viewPager2.currentItem + 1, true)
+            scrollViewPager()
 
             /* Source : https://stackoverflow.com/questions/8035682/animate-progressbar-update-in-android */
             if (!CompatibilityManager.isNougat()) {
@@ -187,6 +178,44 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnC
             Timber.e("onClick - Finished")
             finish()
         }
+    }
+
+    private fun scrollViewPager() {
+        Timber.d("scrollViewPager()")
+
+        val pxToDrag: Int =
+            binding.viewPager2.width * (binding.viewPager2.currentItem + 1 - binding.viewPager2.currentItem)
+        var previousValue = 0
+        val animator = ValueAnimator.ofInt(0, pxToDrag).apply {
+            addUpdateListener { valueAnimator ->
+                val currentValue = valueAnimator.animatedValue as Int
+                val currentPxToDrag = (currentValue - previousValue).toFloat()
+                binding.viewPager2.fakeDragBy(-currentPxToDrag)
+                previousValue = currentValue
+            }
+
+            addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator?) {
+                    binding.viewPager2.beginFakeDrag()
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    binding.viewPager2.endFakeDrag()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) { /* Ignored */
+                }
+
+                override fun onAnimationRepeat(animation: Animator?) { /* Ignored */
+                }
+            })
+
+            interpolator = AccelerateDecelerateInterpolator()
+
+            duration = 800
+        }
+
+        animator.start()
     }
 
     companion object {

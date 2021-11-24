@@ -31,6 +31,8 @@
             android:elevation="0dp"
             app:cardCornerRadius="@dimen/big_margin"
             app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 

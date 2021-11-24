@@ -35,4 +35,12 @@
     <color name="light">#EEEEEE</color>
     <color name="white">#ffffff</color>
 
+    <color name="quiz_item_selected_stroke">#0073D8</color>
+    <color name="quiz_item_selected_text_color">#207EC3</color>
+
+    <color name="yellow">#816C06</color>
+    <color name="red">#980100</color>
+    <color name="blue">#003988</color>
+    <color name="green">#17601A</color>
+
 </resources>

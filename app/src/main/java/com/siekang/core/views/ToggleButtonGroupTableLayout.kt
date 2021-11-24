@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TableLayout
 import android.widget.TableRow
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.card.MaterialCardView
@@ -115,12 +116,33 @@ class ToggleButtonGroupTableLayout @JvmOverloads constructor(
     private fun uncheckCardView() {
         activeCardView?.strokeWidth = 0
         activeCardView?.setStrokeColor(ColorStateList.valueOf(mContext?.getColor(R.color.transparent)!!))
-        (activeCardView?.getChildAt(0) as MaterialTextView).setTextColor(mContext?.getColor(R.color.black)!!)
+        // (activeCardView?.getChildAt(0) as MaterialTextView).setTextColor(mContext?.getColor(R.color.white)!!)
+
+        val textView = (activeCardView?.getChildAt(0) as MaterialTextView)
+        // textView.setTextColor(mContext?.getColor(R.color.quiz_item_selected_text_color)!!)
+
+        textView.setTextColor(ContextCompat.getColor(mContext!!, R.color.white))
+        textView.setShadowLayer(
+            0.0f,
+            0f,
+            0f,
+            ContextCompat.getColor(mContext!!, R.color.transparent)
+        )
     }
 
     private fun checkCardView(cardView: MaterialCardView) {
-        cardView.strokeWidth = 2
-        cardView.setStrokeColor(ColorStateList.valueOf(mContext?.getColor(R.color.colorAccent)!!))
-        (cardView.getChildAt(0) as MaterialTextView).setTextColor(mContext?.getColor(R.color.colorAccent)!!)
+        cardView.strokeWidth = 8
+        cardView.setStrokeColor(ColorStateList.valueOf(mContext?.getColor(R.color.quiz_item_selected_stroke)!!))
+
+        val textView = (cardView.getChildAt(0) as MaterialTextView)
+        // textView.setTextColor(mContext?.getColor(R.color.quiz_item_selected_text_color)!!)
+
+        textView.setTextColor(ContextCompat.getColor(mContext!!, R.color.white))
+        textView.setShadowLayer(
+            0.05f,
+            -5f,
+            5f,
+            ContextCompat.getColor(mContext!!, R.color.quiz_item_selected_text_color)
+        )
     }
 }

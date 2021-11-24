@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Quiz(
-    val id: String,
+    val id: String?,
     val question: String,
     @DrawableRes val quizImage: Int,
     val correctAnswer: String,

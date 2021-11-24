@@ -6,7 +6,6 @@ import com.siekang.data.IRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +24,8 @@ class MainActivityViewModel @Inject constructor(
         val word = charSequence.toString()
 
         searchJob = viewModelScope.launch(Dispatchers.IO) {
+
+            delay(800)
 
             // Make query to repository and retrieve its translation
             val list = repository.getWordTranslation(word)
