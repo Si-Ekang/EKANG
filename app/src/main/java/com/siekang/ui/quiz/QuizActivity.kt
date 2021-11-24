@@ -1,4 +1,4 @@
-package com.siekang.ui.quizz
+package com.siekang.ui.quiz
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.siekang.R
-import com.siekang.data.local.model.Quizz
+import com.siekang.data.local.model.Quiz
 import com.siekang.databinding.ActivityQuizzBinding
 import com.siekang.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,18 +16,18 @@ import java.util.*
 
 @ExperimentalStdlibApi
 @AndroidEntryPoint
-class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.OnCorrectAnswer {
+class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnCorrectAnswer {
 
     private var _viewBinding: ActivityQuizzBinding? = null
     private val binding get() = _viewBinding!!
 
-    private val mViewModel: QuizzViewModel by viewModels()
+    private val mViewModel: QuizViewModel by viewModels()
 
     // ViewPager
     /**
      * The pager adapter, which provides the pages to the view pager widget.
      */
-    private var mViewPagerAdapter: QuizzViewPagerAdapter? = null
+    private var mViewPagerAdapter: QuizViewPagerAdapter? = null
     private var mFragmentList: ArrayList<Fragment>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +42,16 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
 
         setupQuizzList()
         initViewPager()
+
+        mViewModel.getQuestions()
     }
 
     private fun initViews() {
-        binding.progressBarQuestionProgression.max = QuizzViewModel.MAX_QUESTION_COUNT
+        binding.progressBarQuestionProgression.max = QuizViewModel.MAX_QUESTION_COUNT
         binding.progressBarQuestionProgression.progress = 1
 
         binding.tvQuestionCount.text = getString(
-            R.string.question_count_status, 1, QuizzViewModel.MAX_QUESTION_COUNT
+            R.string.question_count_status, 1, QuizViewModel.MAX_QUESTION_COUNT
         )
     }
 
@@ -69,8 +71,8 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
     private fun setupQuizzList() {
         mFragmentList = (mutableListOf<Fragment>() as ArrayList).apply {
 
-            for (element: Quizz in Constants.getPreloadDtoQuizzes()) {
-                this.add(QuizzFragment.newInstance(element))
+            for (element: Quiz in Constants.getPreloadDtoQuizzes()) {
+                this.add(QuizFragment.newInstance(element))
             }
         }
     }
@@ -78,7 +80,7 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
     private fun initViewPager() {
         Timber.d("initViewPager()")
 
-        mViewPagerAdapter = QuizzViewPagerAdapter(this, mFragmentList!!)
+        mViewPagerAdapter = QuizViewPagerAdapter(this, mFragmentList!!)
         binding.viewPager2.adapter = mViewPagerAdapter
 
         binding.viewPager2.registerOnPageChangeCallback(object :
@@ -91,7 +93,7 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
                 binding.tvQuestionCount.text = getString(
                     R.string.question_count_status,
                     position + 1,
-                    QuizzViewModel.MAX_QUESTION_COUNT
+                    QuizViewModel.MAX_QUESTION_COUNT
                 )
             }
 
@@ -127,7 +129,7 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
         when (view?.id) {
             R.id.btn_validate -> {
                 if (null != mFragmentList) {
-                    (mFragmentList!![binding.viewPager2.currentItem] as QuizzFragment).checkAnswers()
+                    (mFragmentList!![binding.viewPager2.currentItem] as QuizFragment).checkAnswers()
                 }
             }
         }
@@ -152,6 +154,6 @@ class QuizzActivity : AppCompatActivity(), View.OnClickListener, QuizzFragment.O
     }
 
     companion object {
-        val TAG: String = QuizzActivity::class.java.simpleName
+        val TAG: String = QuizActivity::class.java.simpleName
     }
 }

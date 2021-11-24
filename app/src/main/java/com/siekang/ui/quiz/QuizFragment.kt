@@ -1,4 +1,4 @@
-package com.siekang.ui.quizz
+package com.siekang.ui.quiz
 
 import android.content.Context
 import android.os.Bundle
@@ -10,23 +10,23 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.siekang.core.views.ToggleButtonGroupTableLayout
-import com.siekang.data.local.model.Quizz
+import com.siekang.data.local.model.Quiz
 import com.siekang.databinding.FragmentQuizzBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 
 @AndroidEntryPoint
-class QuizzFragment : Fragment(), View.OnClickListener {
+class QuizFragment : Fragment(), View.OnClickListener {
 
     companion object {
 
         private const val EXTRA_QUIZZ = "EXTRA_QUIZZ"
 
-        fun newInstance(quizz: Quizz): QuizzFragment {
+        fun newInstance(quizz: Quiz): QuizFragment {
             val args = Bundle()
             args.putParcelable(EXTRA_QUIZZ, quizz)
-            val fragment = QuizzFragment()
+            val fragment = QuizFragment()
             fragment.arguments = args
             return fragment
         }
@@ -36,10 +36,10 @@ class QuizzFragment : Fragment(), View.OnClickListener {
     private val binding get() = _viewBinding!!
     private lateinit var tbGroup: ToggleButtonGroupTableLayout
 
-    private val mViewModel: QuizzViewModel by activityViewModels()
+    private val mViewModel: QuizViewModel by activityViewModels()
     private var selectedAnswer: String? = null
 
-    private lateinit var item: Quizz
+    private lateinit var item: Quiz
 
     /**
      * passing data between fragments
@@ -57,7 +57,7 @@ class QuizzFragment : Fragment(), View.OnClickListener {
         if (context is OnCorrectAnswer) {
             listener = context
         } else {
-            throw ClassCastException("$context must implement ${QuizzActivity.TAG}.OnCorrectAnswer");
+            throw ClassCastException("$context must implement ${QuizActivity.TAG}.OnCorrectAnswer");
         }
     }
 
@@ -87,8 +87,8 @@ class QuizzFragment : Fragment(), View.OnClickListener {
 
         tbGroup = binding.tbGroup
 
-        binding.quizz = item
-        binding.ivQuizzPicture.setImageResource(item.quizzImage)
+        binding.quiz = item
+        binding.ivQuizPicture.setImageResource(item.quizImage)
 
         initViewModelObservers()
     }

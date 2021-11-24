@@ -18,6 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/medium_margin"
             android:layout_marginEnd="16dp">
 
             <androidx.constraintlayout.widget.Guideline
@@ -32,11 +33,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="goToHome"
+                android:src="@drawable/si_ekang_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guideline_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_si_ekang_round" />
+                app:shapeAppearanceOverlay="@style/toolbarLogoStyle"
+                tools:ignore="UnusedAttribute,UsingOnClickInXml" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="0dp"
@@ -49,13 +55,16 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_weight=".8"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
                         android:text="Français"
                         android:textAlignment="gravity"
                         android:textColor="@color/white"
@@ -64,11 +73,13 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_swap_horizontal" />
+                        app:srcCompat="@drawable/ic_swap_horizontal"
+                        app:tint="@color/white" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
                         android:text="Fang"
                         android:textAlignment="gravity"
                         android:textColor="@color/white"
@@ -78,12 +89,16 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_word_translate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="32dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.MaterialToolbar>
 </com.google.android.material.appbar.AppBarLayout>

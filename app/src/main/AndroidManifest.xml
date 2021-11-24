@@ -35,7 +35,7 @@
             android:launchMode="singleTask" />
 
         <activity
-            android:name=".ui.quizz.QuizzActivity"
+            android:name=".ui.quiz.QuizActivity"
             android:launchMode="singleTask" />
     </application>
 

@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 def buildDateTime =
@@ -13,6 +14,8 @@ def buildDateTime =
 
 android {
     compileSdk rootProject.ext.compileSdkVersion
+
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.siekang"
@@ -101,6 +104,20 @@ dependencies {
     implementation rootProject.ext.generalDependencies.hiltWorkerManager
     kapt rootProject.ext.generalDependencies.hiltKaptAndroidXCompiler
 
+    /* Retrofit using RxJava3, Okhttp, Okhttp logging interceptor, Moshi  */
+    implementation rootProject.ext.generalDependencies.retrofit
+    implementation rootProject.ext.generalDependencies.retrofitConverterMoshi
+
+    // OkHttp
+    // define a BOM and its version
+    implementation(platform(rootProject.ext.generalDependencies.okHttpBom))
+    // define any required OkHttp artifacts without version
+    implementation(rootProject.ext.generalDependencies.okHttp)
+    implementation(rootProject.ext.generalDependencies.okHttpLogging)
+
+    // Moshi
+    implementation rootProject.ext.generalDependencies.moshi
+    kapt rootProject.ext.generalDependencies.moshiKotlin
 
     // Timber : Logging library
     implementation rootProject.ext.generalDependencies.timber

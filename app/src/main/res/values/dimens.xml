@@ -1,3 +1,31 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- GLOBAL -->
+
+    <!-- Smartphone -->
+    <dimen name="ultra_small_margin">2dp</dimen>
+    <dimen name="extra_small_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+    <dimen name="big_medium_margin">32dp</dimen>
+    <dimen name="extra_big_margin">48dp</dimen>
+    <dimen name="ultra_big_margin">56dp</dimen>
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+
+
+    <!-- Tablet -->
+    <dimen name="ultra_small_margin_tablet">4dp</dimen>
+    <dimen name="extra_small_margin_tablet">8dp</dimen>
+    <dimen name="small_margin_tablet">16dp</dimen>
+    <dimen name="medium_margin_tablet">24dp</dimen>
+    <dimen name="big_margin_tablet">36dp</dimen>
+    <dimen name="big_medium_margin_tablet">48dp</dimen>
+    <dimen name="extra_big_margin_tablet">64dp</dimen>
+    <dimen name="ultra_big_margin_tablet">72dp</dimen>
+    <dimen name="ultra_ultra_big_margin_tablet">96dp</dimen>
+
 </resources>
