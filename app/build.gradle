@@ -115,13 +115,15 @@ dependencies {
     implementation(rootProject.ext.generalDependencies.okHttp)
     implementation(rootProject.ext.generalDependencies.okHttpLogging)
 
+    // Gson
+    implementation rootProject.ext.generalDependencies.gson
+
     // Moshi
     implementation rootProject.ext.generalDependencies.moshi
     kapt rootProject.ext.generalDependencies.moshiKotlin
 
     // Timber : Logging library
     implementation rootProject.ext.generalDependencies.timber
-
 
 
     /////////////////////////////

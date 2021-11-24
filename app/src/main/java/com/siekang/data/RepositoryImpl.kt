@@ -15,10 +15,25 @@ class RepositoryImpl @Inject constructor(
     private var mApiImpl: ApiImpl = apiImpl
 
 
+    /////////////////////////////////////
+    //
+    // DB
+    //
+    /////////////////////////////////////
+    override suspend fun getWordTranslation(word: String): List<String> {
+        return mDbImpl.getWordTranslation(word)
+    }
+
     override fun deleteAll() {
         mDbImpl.deleteAll()
     }
 
+
+    /////////////////////////////////////
+    //
+    // API
+    //
+    /////////////////////////////////////
     override suspend fun getQuestions(): List<Question>? = mApiImpl.getQuestions()
 
 

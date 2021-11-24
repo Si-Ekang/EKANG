@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.siekang.data.local.SiEkangDatabase
 import com.siekang.data.local.dao.UserDao
+import com.siekang.data.local.dao.WordDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,12 @@ internal object AppModule {
     }
 
     @Provides
-    fun provideContactDao(appDatabase: SiEkangDatabase): UserDao {
+    fun provideUserDao(appDatabase: SiEkangDatabase): UserDao {
         return appDatabase.getUserDao()
+    }
+
+    @Provides
+    fun provideWordDao(appDatabase: SiEkangDatabase): WordDao {
+        return appDatabase.getWordDao()
     }
 }

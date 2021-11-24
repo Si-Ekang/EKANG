@@ -41,6 +41,8 @@ ext {
     okhttpBomVersion = '5.0.0-alpha.2'
     okhttpLoggingVersion = '5.0.0-alpha.2'
 
+    gsonVersion = '2.8.9'
+
     moshiVersion = '1.12.0'
 
     timberVersion = '5.0.1'
@@ -53,27 +55,27 @@ ext {
 
     generalDependencies = [
             // Kotlin
-            kotlinCoroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
-            kotlinCoroutinesAndroid     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion",
-            kotlinParcelize             : "org.jetbrains.kotlin:kotlin-parcelize-runtime:$kotlinVersion",
+            kotlinCoroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            kotlinCoroutinesAndroid : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion",
+            kotlinParcelize         : "org.jetbrains.kotlin:kotlin-parcelize-runtime:$kotlinVersion",
 
             // KTX framework
-            activityKTX                 : "androidx.activity:activity-ktx:$activityKtxVersion",
-            fragmentKTX                 : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
-            navigationKTX               : "androidx.navigation:navigation-ui-ktx:$navigationUiVersion",
-            navigationFragmentKTX       : "androidx.navigation:navigation-fragment-ktx:$navigationFragmentVersion",
+            activityKTX             : "androidx.activity:activity-ktx:$activityKtxVersion",
+            fragmentKTX             : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
+            navigationKTX           : "androidx.navigation:navigation-ui-ktx:$navigationUiVersion",
+            navigationFragmentKTX   : "androidx.navigation:navigation-fragment-ktx:$navigationFragmentVersion",
 
-            core                        : "androidx.core:core-ktx:$coreVersion",
-            appcompat                   : "androidx.appcompat:appcompat:$appCompatVersion",
-            material                    : "com.google.android.material:material:$materialVersion",
-            palette                     : "androidx.palette:palette-ktx:$paletteVersion",
-            constraintLayout            : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
-            recyclerView                : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
-            cardView                    : "androidx.cardview:cardview:$cardViewVersion",
+            core                    : "androidx.core:core-ktx:$coreVersion",
+            appcompat               : "androidx.appcompat:appcompat:$appCompatVersion",
+            material                : "com.google.android.material:material:$materialVersion",
+            palette                 : "androidx.palette:palette-ktx:$paletteVersion",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+            cardView                : "androidx.cardview:cardview:$cardViewVersion",
 
             // Navigation
-            navigationUi                : "androidx.navigation:navigation-ui:$navigationUiVersion",
-            navigationFragment          : "androidx.navigation:navigation-fragment:$navigationFragmentVersion",
+            navigationUi            : "androidx.navigation:navigation-ui:$navigationUiVersion",
+            navigationFragment      : "androidx.navigation:navigation-fragment:$navigationFragmentVersion",
 
             /* Android Architecture Component - Room */
             roomRuntime             : "androidx.room:room-ktx:$roomVersion",
@@ -82,11 +84,11 @@ ext {
             roomExtCoroutinesSupport: "androidx.room:room-ktx:$roomVersion",
 
             /* Lifecycle */
-            lifecycleViewModel          : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
-            lifecycleLiveData           : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
-            lifecycleRuntime            : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
-            lifecycleCompiler           : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
-            lifecycleService            : "androidx.lifecycle:lifecycle-service:$lifecycleVersion",
+            lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            lifecycleLiveData       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+            lifecycleRuntime        : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
+            lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
+            lifecycleService        : "androidx.lifecycle:lifecycle-service:$lifecycleVersion",
 
             /* Hilt - We are going to use hilt.android which includes
              * support for Activity and fragment injection so we need to include
@@ -100,17 +102,20 @@ ext {
             hiltWorkerManager       : "androidx.hilt:hilt-work:$hiltAndroidXVersion",
 
             /* Retrofit using RxJava3, Okhttp, Okhttp logging interceptor, Moshi  */
-            retrofit                    : "com.squareup.retrofit2:retrofit:$retrofit2Version",
-            retrofitConverterMoshi      : "com.squareup.retrofit2:converter-moshi:$retrofit2Version",
+            retrofit                : "com.squareup.retrofit2:retrofit:$retrofit2Version",
+            retrofitConverterMoshi  : "com.squareup.retrofit2:converter-moshi:$retrofit2Version",
 
             // OkHttp
-            okHttpBom                   : "com.squareup.okhttp3:okhttp-bom:$okhttpBomVersion",
-            okHttp                      : "com.squareup.okhttp3:okhttp",
-            okHttpLogging               : "com.squareup.okhttp3:logging-interceptor",
+            okHttpBom               : "com.squareup.okhttp3:okhttp-bom:$okhttpBomVersion",
+            okHttp                  : "com.squareup.okhttp3:okhttp",
+            okHttpLogging           : "com.squareup.okhttp3:logging-interceptor",
+
+            // Gson
+            gson                    : "com.google.code.gson:gson:$gsonVersion",
 
             // Moshi
-            moshi                       : "com.squareup.moshi:moshi:$moshiVersion",
-            moshiKotlin                 : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+            moshi                   : "com.squareup.moshi:moshi:$moshiVersion",
+            moshiKotlin             : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
 
 
             // Timber : Logging library
