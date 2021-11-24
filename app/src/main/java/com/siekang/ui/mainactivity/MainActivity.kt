@@ -231,7 +231,7 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
     override fun afterTextChanged(s: Editable?) {
         Timber.e("afterTextChanged() : ${s.toString()}")
 
-        binding.layoutContentToolbar.tietWordTranslate.setCompoundDrawables(
+        binding.layoutContentToolbar.tietWordTranslate.setCompoundDrawablesWithIntrinsicBounds(
             ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_search),
             null,
             if (s.toString().isEmpty()) null else ContextCompat.getDrawable(

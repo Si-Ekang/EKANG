@@ -28,4 +28,6 @@
     <dimen name="ultra_big_margin_tablet">72dp</dimen>
     <dimen name="ultra_ultra_big_margin_tablet">96dp</dimen>
 
+    <dimen name="default_backdrop">170dp</dimen>
+
 </resources>

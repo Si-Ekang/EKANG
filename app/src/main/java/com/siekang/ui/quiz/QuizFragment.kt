@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.card.MaterialCardView
@@ -46,6 +47,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
      */
     interface OnCorrectAnswer {
         fun correctAnswer()
+        // fun onWrongAnswer() // for stats purpose (feature to develop later)
     }
 
     private var listener: OnCorrectAnswer? = null
@@ -85,6 +87,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initVariables()
+
         tbGroup = binding.tbGroup
 
         binding.quiz = item
@@ -96,6 +100,11 @@ class QuizFragment : Fragment(), View.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _viewBinding = null
+    }
+
+    private fun initVariables() {
+        mViewModel.isAnswerSelected(false)
+        if (null != selectedAnswer) selectedAnswer = null
     }
 
 
@@ -129,12 +138,20 @@ class QuizFragment : Fragment(), View.OnClickListener {
     fun checkAnswers() {
         Timber.e("checkAnswers()")
 
+        if (null == selectedAnswer) {
+            Timber.e("No answer has been selected")
+            Toast.makeText(requireActivity(), "Please selected an answer", Toast.LENGTH_LONG).show()
+            return
+        }
+
         if (item.correctAnswer != selectedAnswer) {
             // Not correct
             Timber.e("wrong answer")
             return
         } else {
             listener?.correctAnswer()
+            // reset variables
+            initVariables()
         }
     }
 
