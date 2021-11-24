@@ -18,8 +18,7 @@ object AppHelperModule {
     @Provides
     fun provideDbHelper(appDatabase: SiEkangDatabase) =
         DbImpl(
-           appDatabase.getUserDao()
-
+            appDatabase.getUserDao()
         )
 
     @Provides

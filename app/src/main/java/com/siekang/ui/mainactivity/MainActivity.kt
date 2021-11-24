@@ -1,8 +1,17 @@
 package com.siekang.ui.mainactivity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
@@ -10,15 +19,20 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.siekang.R
 import com.siekang.databinding.ActivityMainBinding
+import com.siekang.ui.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.regex.Pattern
 
+
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
+class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTouchListener,
+    TextWatcher {
 
     private var _viewBinding: ActivityMainBinding? = null
     private val binding get() = _viewBinding!!
+
+    private val mViewModel: MainActivityViewModel by viewModels()
 
     private lateinit var toolbar: MaterialToolbar
     private lateinit var bottomNavView: BottomNavigationView
@@ -35,33 +49,17 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+
         _viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         toolbar = binding.layoutContentToolbar.toolbar
-
         setSupportActionBar(toolbar)
 
         bottomNavView = binding.layoutContentMain.navView
 
-        bottomNavView.setOnNavigationItemSelectedListener {
-            Timber.e("Selected ${it.title}")
-            unFocusEditText()
-
-            if (it.itemId != bottomNavView.selectedItemId)
-                NavigationUI.onNavDestinationSelected(
-                    it,
-                    navController
-                )
-            true
-        }
-
         navController = findNavController(R.id.nav_host_fragment_content_main)
-
-        navController.addOnDestinationChangedListener { _, destination, arguments ->
-            Timber.d(destination.toString())
-            binding.layoutContentToolbar.toolbar.setTitle(destination.label, arguments)
-        }
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
 
-        binding.layoutContentToolbar.tietWordTranslate.onFocusChangeListener = this
+        setListeners()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -94,6 +92,32 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
     // CLASSES METHODS
     //
     /////////////////////////////////////
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setListeners() {
+        navController.addOnDestinationChangedListener { _, destination, arguments ->
+            Timber.d("navController.addOnDestinationChangedListener : $destination")
+            binding.layoutContentToolbar.toolbar.setTitle(destination.label, arguments)
+        }
+
+        bottomNavView.setOnNavigationItemSelectedListener {
+            Timber.d("bottomNavView.setOnNavigationItemSelectedListener()")
+            unFocusEditText()
+
+            Timber.e("Selected ${it.title}")
+
+            if (it.itemId != bottomNavView.selectedItemId)
+                NavigationUI.onNavDestinationSelected(
+                    it,
+                    navController
+                )
+            true
+        }
+
+        binding.layoutContentToolbar.tietWordTranslate.addTextChangedListener(this)
+        binding.layoutContentToolbar.tietWordTranslate.setOnTouchListener(this)
+        binding.layoutContentToolbar.tietWordTranslate.onFocusChangeListener = this
+    }
+
     private fun MaterialToolbar.setTitle(label: CharSequence?, arguments: Bundle?) {
         if (label != null) {
             // Fill in the data pattern with the args to build a valid URI
@@ -118,6 +142,7 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
     }
 
     private fun unFocusEditText() {
+        Timber.e("unFocusEditText()")
         if (binding.layoutContentToolbar.tietWordTranslate.hasFocus()) {
             binding.layoutContentToolbar.tietWordTranslate.clearFocus()
         }
@@ -129,6 +154,25 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
         }
     }
 
+    private fun showSearchFragment() {
+        Timber.d("showSearchFragment()")
+        val searchFragment = SearchFragment.newInstance()
+
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.fl_fragment_container, searchFragment, SearchFragment.TAG)
+        transaction.commit()
+    }
+
+    private fun hideSearchFragment() {
+        Timber.e("hideSearchFragment()")
+        val fragmentToRemove: Fragment =
+            supportFragmentManager.findFragmentByTag(SearchFragment.TAG)!!
+
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.remove(fragmentToRemove)
+        transaction.commit()
+    }
+
 
     /////////////////////////////////////
     //
@@ -136,11 +180,57 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
     //
     /////////////////////////////////////
     override fun onFocusChange(view: View?, hasFocus: Boolean) {
-        if (hasFocus) {
-            Timber.d("EditText has focus")
-        } else {
+        if (!hasFocus) {
             Timber.e("EditText lost focus")
+            hideSearchFragment()
+        } else {
+            Timber.d("EditText has focus")
+            showSearchFragment()
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouch(view: View?, event: MotionEvent?): Boolean {
+
+        when (view?.id) {
+            R.id.tiet_word_translate -> {
+
+                val DRAWABLE_LEFT = 0
+                val DRAWABLE_TOP = 1
+                val DRAWABLE_RIGHT = 2
+                val DRAWABLE_BOTTOM = 3
+
+                if (event?.action == MotionEvent.ACTION_DOWN) {
+                    if (event.rawX >= binding.layoutContentToolbar.tietWordTranslate.right - binding.layoutContentToolbar.tietWordTranslate.compoundDrawables[DRAWABLE_RIGHT].bounds.width()) {
+                        // your action here
+                        return false
+                    }
+                }
+            }
+
+            else -> return false
+        }
+
+        return super.onTouchEvent(event)
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        // Ignored
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        // Ignored
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        binding.layoutContentToolbar.tietWordTranslate.setCompoundDrawables(
+            ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_search),
+            null,
+            if (s.toString().isEmpty()) null else ContextCompat.getDrawable(
+                this@MainActivity,
+                R.drawable.ic_close
+            ),
+            null
+        )
+    }
 }

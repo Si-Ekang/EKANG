@@ -94,9 +94,15 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_weight="1"
                     android:descendantFocusability="beforeDescendants"
+                    android:drawableTint="@color/white"
                     android:focusableInTouchMode="true"
+                    android:hint="Rechercher"
                     android:imeOptions="actionDone"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textColorHint="@color/light"
+                    tools:drawableEnd="@drawable/ic_close"
+                    tools:drawableStart="@drawable/ic_search"
+                    tools:ignore="HardcodedText" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

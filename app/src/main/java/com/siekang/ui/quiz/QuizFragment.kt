@@ -11,7 +11,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.siekang.core.views.ToggleButtonGroupTableLayout
 import com.siekang.data.local.model.Quiz
-import com.siekang.databinding.FragmentQuizzBinding
+import com.siekang.databinding.FragmentQuizBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -21,18 +21,18 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
     companion object {
 
-        private const val EXTRA_QUIZZ = "EXTRA_QUIZZ"
+        private const val EXTRA_QUIZ = "EXTRA_QUIZ"
 
-        fun newInstance(quizz: Quiz): QuizFragment {
+        fun newInstance(quiz: Quiz): QuizFragment {
             val args = Bundle()
-            args.putParcelable(EXTRA_QUIZZ, quizz)
+            args.putParcelable(EXTRA_QUIZ, quiz)
             val fragment = QuizFragment()
             fragment.arguments = args
             return fragment
         }
     }
 
-    private var _viewBinding: FragmentQuizzBinding? = null
+    private var _viewBinding: FragmentQuizBinding? = null
     private val binding get() = _viewBinding!!
     private lateinit var tbGroup: ToggleButtonGroupTableLayout
 
@@ -69,7 +69,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
         if (extras == null) {
             Timber.e("bundle is null - check the data you are trying to pass through please !")
         } else {
-            item = extras.getParcelable(EXTRA_QUIZZ)!!
+            item = extras.getParcelable(EXTRA_QUIZ)!!
         }
     }
 
@@ -78,7 +78,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding = FragmentQuizzBinding.inflate(inflater, container, false)
+        _viewBinding = FragmentQuizBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -140,8 +140,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            /*R.id.btn_start_quizz -> {
-                startActivity(Intent(requireActivity(), QuizzActivity::class.java))
+            /*R.id.btn_start_quiz -> {
+                startActivity(Intent(requireActivity(), QuizActivity::class.java))
             }*/
         }
     }

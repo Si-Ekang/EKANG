@@ -15,6 +15,5 @@ abstract class SiEkangDatabase : RoomDatabase() {
         const val DATABASE_NAME = "si_ekang"
     }
 
-    abstract fun getUserDao() : UserDao
-
+    abstract fun getUserDao(): UserDao
 }

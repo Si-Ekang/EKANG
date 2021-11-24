@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.siekang.databinding.FragmentLibraryBinding
 import com.siekang.databinding.FragmentNotificationsBinding
-import com.siekang.databinding.FragmentProfileBinding
 
-class NotificationsFragment: Fragment() {
+class NotificationsFragment : Fragment() {
 
     private var _viewBinding: FragmentNotificationsBinding? = null
     private val binding get() = _viewBinding!!

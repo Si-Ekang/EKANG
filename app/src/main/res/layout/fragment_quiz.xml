@@ -95,12 +95,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_quizz_picture">
+            app:layout_constraintTop_toBottomOf="@id/iv_quiz_picture">
 
             <TableRow>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/rb_quizz_answer1"
+                    android:id="@+id/rb_quiz_answer1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,13 +115,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text='@{quizz.possibleAnswers[0]}'
+                        android:text='@{quiz.possibleAnswers[0]}'
                         tools:text="Answer 1" />
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/rb_quizz_answer2"
+                    android:id="@+id/rb_quiz_answer2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -137,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text='@{quizz.possibleAnswers[1]}'
+                        android:text='@{quiz.possibleAnswers[1]}'
                         tools:text="Answer 2" />
                 </com.google.android.material.card.MaterialCardView>
             </TableRow>
@@ -145,7 +145,7 @@
             <TableRow>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/rb_quizz_answer3"
+                    android:id="@+id/rb_quiz_answer3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -160,12 +160,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text='@{quizz.possibleAnswers[2]}'
+                        android:text='@{quiz.possibleAnswers[2]}'
                         tools:text="Answer 3" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/rb_quizz_answer4"
+                    android:id="@+id/rb_quiz_answer4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -180,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text='@{quizz.possibleAnswers[3]}'
+                        android:text='@{quiz.possibleAnswers[3]}'
                         tools:text="Answer 4" />
                 </com.google.android.material.card.MaterialCardView>
             </TableRow>

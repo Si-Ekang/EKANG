@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.siekang.databinding.ActivityMainBinding
 import com.siekang.databinding.FragmentLibraryBinding
-import com.siekang.databinding.FragmentProfileBinding
 
 class LibraryFragment : Fragment() {
 
@@ -18,6 +16,7 @@ class LibraryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
