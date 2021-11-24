@@ -160,6 +160,10 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fl_fragment_container, searchFragment, SearchFragment.TAG)
+        transaction.setCustomAnimations(
+            R.animator.slide_down, 0,
+            0, R.animator.slide_up
+        )
         transaction.commit()
     }
 
@@ -201,9 +205,11 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
                 val DRAWABLE_BOTTOM = 3
 
                 if (event?.action == MotionEvent.ACTION_DOWN) {
-                    if (event.rawX >= binding.layoutContentToolbar.tietWordTranslate.right - binding.layoutContentToolbar.tietWordTranslate.compoundDrawables[DRAWABLE_RIGHT].bounds.width()) {
-                        // your action here
-                        return false
+                    if (null != binding.layoutContentToolbar.tietWordTranslate.compoundDrawables[DRAWABLE_RIGHT]) {
+                        if (event.rawX >= binding.layoutContentToolbar.tietWordTranslate.right - binding.layoutContentToolbar.tietWordTranslate.compoundDrawables[DRAWABLE_RIGHT].bounds.width()) {
+                            // your action here
+                            return false
+                        }
                     }
                 }
             }
@@ -223,6 +229,8 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
     }
 
     override fun afterTextChanged(s: Editable?) {
+        Timber.e("afterTextChanged() : ${s.toString()}")
+
         binding.layoutContentToolbar.tietWordTranslate.setCompoundDrawables(
             ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_search),
             null,
