@@ -122,6 +122,10 @@ dependencies {
     implementation rootProject.ext.generalDependencies.moshi
     kapt rootProject.ext.generalDependencies.moshiKotlin
 
+    // Lottie
+    implementation rootProject.ext.generalDependencies.lottie
+
+
     // Timber : Logging library
     implementation rootProject.ext.generalDependencies.timber
 

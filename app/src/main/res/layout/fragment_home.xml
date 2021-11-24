@@ -15,19 +15,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_start_quizz"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start a new Quizz"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/colorPrimary"
-        app:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home"
-        tools:ignore="HardcodedText"
-        tools:text="Start a new Quizz" />
+        app:layout_constraintTop_toBottomOf="@id/tv_home">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ultra_ultra_big_margin_tablet"
+            android:layout_marginVertical="@dimen/small_margin"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="lottie_quiz.json"
+            app:lottie_loop="true" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_quizz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:text="Start a new Quizz"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="@dimen/extra_small_margin"
+            tools:ignore="HardcodedText"
+            tools:text="Start a new Quizz" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
