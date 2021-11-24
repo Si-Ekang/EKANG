@@ -140,13 +140,14 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
         if (null == selectedAnswer) {
             Timber.e("No answer has been selected")
-            Toast.makeText(requireActivity(), "Please selected an answer", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireActivity(), "Please select an answer", Toast.LENGTH_LONG).show()
             return
         }
 
         if (item.correctAnswer != selectedAnswer) {
             // Not correct
             Timber.e("wrong answer")
+            Toast.makeText(requireActivity(), "Wrong answer", Toast.LENGTH_LONG).show()
             return
         } else {
             listener?.correctAnswer()
