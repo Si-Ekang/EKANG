@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
 
         _viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        unFocusEditText()
 
         toolbar = binding.layoutContentToolbar.toolbar
         setSupportActionBar(toolbar)
@@ -94,6 +95,11 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
     /////////////////////////////////////
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
+
+        binding.layoutContentToolbar.tietWordTranslate.addTextChangedListener(this)
+        binding.layoutContentToolbar.tietWordTranslate.setOnTouchListener(this)
+        binding.layoutContentToolbar.tietWordTranslate.onFocusChangeListener = this
+
         navController.addOnDestinationChangedListener { _, destination, arguments ->
             Timber.d("navController.addOnDestinationChangedListener : $destination")
             binding.layoutContentToolbar.toolbar.setTitle(destination.label, arguments)
@@ -112,10 +118,6 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
                 )
             true
         }
-
-        binding.layoutContentToolbar.tietWordTranslate.addTextChangedListener(this)
-        binding.layoutContentToolbar.tietWordTranslate.setOnTouchListener(this)
-        binding.layoutContentToolbar.tietWordTranslate.onFocusChangeListener = this
     }
 
     private fun MaterialToolbar.setTitle(label: CharSequence?, arguments: Bundle?) {
@@ -242,6 +244,5 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
         )
 
         mViewModel.searchWord(s.toString())
-
     }
 }

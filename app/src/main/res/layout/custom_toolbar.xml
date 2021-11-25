@@ -58,6 +58,8 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight=".8"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:orientation="horizontal"
                     android:paddingVertical="8dp">
 
@@ -93,12 +95,11 @@
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_weight="1"
-                    android:descendantFocusability="beforeDescendants"
                     android:drawableStart="@drawable/ic_search"
                     android:drawableTint="@color/white"
-                    android:focusableInTouchMode="true"
                     android:hint="Rechercher"
                     android:imeOptions="actionDone"
+                    android:inputType="textCapWords"
                     android:maxLines="1"
                     android:textColorHint="@color/light"
                     tools:drawableEnd="@drawable/ic_close"
