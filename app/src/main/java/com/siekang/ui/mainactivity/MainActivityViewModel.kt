@@ -15,6 +15,28 @@ class MainActivityViewModel @Inject constructor(
 
     private var searchJob: Job = Job()
 
+
+    fun getTranslations(page: Int, size: Int) {
+
+        Timber.e("Cancel all running jobs")
+        viewModelScope.coroutineContext.cancelChildren()
+
+        Timber.d("getTranslations() : page number : $page - size : $size")
+
+        searchJob = viewModelScope.launch(Dispatchers.IO) {
+
+            delay(800)
+
+            // Make query to repository and retrieve its translation
+            val response = repository.getTranslations(page, size)
+
+            withContext(Dispatchers.Main) {
+                Timber.d("${response.translations}")
+            }
+        }
+
+    }
+
     fun searchWord(charSequence: CharSequence) {
 
         Timber.e("Cancel all running jobs")

@@ -83,6 +83,16 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
                 || super.onSupportNavigateUp()
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mViewModel.getTranslations(1, 30)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _viewBinding = null
