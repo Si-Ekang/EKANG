@@ -5,7 +5,7 @@ import com.siekang.data.local.model.Quiz
 
 object Constants {
 
-    const val BASE_ENDPOINT_SI_EKANG: String = "https://ekang-api.herokuapp.com/v0/"
+    const val BASE_ENDPOINT_SI_EKANG: String = "https://ekang-api.herokuapp.com/v1/"
 
     @ExperimentalStdlibApi
     fun getPreloadDtoQuizzes(): List<Quiz> {

@@ -31,7 +31,7 @@ class MainActivityViewModel @Inject constructor(
             val response = repository.getTranslations(page, size)
 
             withContext(Dispatchers.Main) {
-                Timber.d("${response.translations}")
+                Timber.d("$response")
             }
         }
 

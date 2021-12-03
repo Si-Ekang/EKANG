@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="translation"
+            type="com.siekang.data.remote.dto.Translation" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/small_margin"
+        app:cardElevation="@dimen/extra_small_margin"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:cardBackgroundColor="@color/dark_grey">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_french"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:text='@{translation.french}'
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="French" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_equals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:text="="
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="=" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_fang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:text='@{translation.fang}'
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="Fang" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -4,7 +4,7 @@ package com.siekang.data
 import com.siekang.data.local.DbImpl
 import com.siekang.data.remote.ApiImpl
 import com.siekang.data.remote.dto.Question
-import com.siekang.data.remote.dto.TranslationsResponse
+import com.siekang.data.remote.dto.Translation
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -34,7 +34,7 @@ class RepositoryImpl @Inject constructor(
     // API
     //
     /////////////////////////////////////
-    override suspend fun getTranslations(page: Int, size: Int): TranslationsResponse =
+    override suspend fun getTranslations(page: Int, size: Int): List<Translation> =
         mApiImpl.getTranslations(page, size)
 
     override suspend fun getQuestions(): List<Question>? = mApiImpl.getQuestions()
