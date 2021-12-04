@@ -21,14 +21,28 @@ class LibraryViewModel @Inject constructor(
 
     private val translations: MutableLiveData<List<Translation>> = MutableLiveData()
 
+    init {
+        Timber.d("init")
+        currentIndex = 1
+        hasNextItemsInRemote = true
+    }
+
     fun getTranslations(): LiveData<List<Translation>> = translations
 
-    fun fetchTranslations() {
+    fun fetchTranslations(shouldIndexPlusOne: Boolean) {
+        if (!hasNextItemsInRemote) {
+            Timber.e("No more items available in remote. Avoid REST call operation.")
+            return
+        }
+
         viewModelScope.launch(Dispatchers.IO) {
             try {
-
                 supervisorScope {
-                    val response = repository.getTranslations(1, 10)
+
+                    if (!shouldIndexPlusOne) currentIndex else currentIndex += 1
+
+
+                    val response = repository.getTranslations(currentIndex, 10)
 
                     if (null == response) {
                         Timber.e("Response is null")
@@ -40,7 +54,19 @@ class LibraryViewModel @Inject constructor(
                 }
             } catch (exception: Exception) {
                 exception.printStackTrace()
+                Timber.e(exception.message)
+
+                if (exception is NullPointerException) {
+                    hasNextItemsInRemote = false
+                }
             }
         }
     }
+
+    companion object {
+        var currentIndex = 1
+
+        var hasNextItemsInRemote: Boolean = false
+    }
+
 }

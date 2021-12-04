@@ -6,9 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.siekang.data.remote.dto.Translation
 import com.siekang.databinding.RowLibraryBinding
 
-class LibraryAdapter(
-    private val items: List<Translation>
-) : RecyclerView.Adapter<RowLibraryViewHolder>() {
+class LibraryAdapter() : RecyclerView.Adapter<RowLibraryViewHolder>() {
+
+    private var mTranslationItems: ArrayList<Translation> =
+        mutableListOf<Translation>() as ArrayList<Translation>
+
+    fun addAll(items: List<Translation>) {
+        mTranslationItems.addAll(items)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowLibraryViewHolder {
         val binding: RowLibraryBinding =
@@ -22,10 +27,10 @@ class LibraryAdapter(
     }
 
     override fun onBindViewHolder(holder: RowLibraryViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(mTranslationItems[position])
     }
 
     override fun getItemCount(): Int {
-        return items.size ?: 0
+        return mTranslationItems.size ?: 0
     }
 }

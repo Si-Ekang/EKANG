@@ -22,6 +22,8 @@ class LibraryFragment : Fragment() {
 
     private val mViewModel: LibraryViewModel by viewModels()
 
+    private var mAdapter: LibraryAdapter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +41,11 @@ class LibraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
         initViewModelObservers()
 
-        mViewModel.fetchTranslations()
+        mViewModel.fetchTranslations(false)
     }
 
     override fun onDestroyView() {
@@ -50,9 +54,28 @@ class LibraryFragment : Fragment() {
     }
 
 
+    private fun setupRecyclerView() {
+        binding.rvLibrary.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (!recyclerView.canScrollVertically(1)
+                    && newState == RecyclerView.SCROLL_STATE_IDLE
+                ) {
+                    Timber.e("end")
+
+                    showProgressBar()
+                    mViewModel.fetchTranslations(true)
+                }
+            }
+        })
+    }
+
     private fun initViewModelObservers() {
         mViewModel.getTranslations().observe(viewLifecycleOwner, {
             Timber.d("$it")
+            hideProgressBar()
+            showRecyclerView()
             bindRecyclerView(it)
         })
     }
@@ -62,7 +85,36 @@ class LibraryFragment : Fragment() {
         binding.rvLibrary.layoutManager = mLayoutManager
         binding.rvLibrary.itemAnimator = DefaultItemAnimator()
 
-        val mAdapter = LibraryAdapter(translations)
+        if (null == mAdapter)
+            mAdapter = LibraryAdapter()
         binding.rvLibrary.adapter = mAdapter
+
+        mAdapter?.addAll(translations)
+        mAdapter?.notifyDataSetChanged()
+    }
+
+    private fun showProgressBar() {
+        if (binding.progressBar.visibility == View.INVISIBLE || binding.rvLibrary.visibility == View.GONE) {
+            binding.progressBar.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideProgressBar() {
+        if (binding.progressBar.visibility == View.VISIBLE) {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showRecyclerView() {
+        if (binding.rvLibrary.visibility == View.INVISIBLE || binding.rvLibrary.visibility == View.GONE) {
+            binding.rvLibrary.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideRecyclerView() {
+        if (binding.rvLibrary.visibility == View.VISIBLE) {
+            binding.rvLibrary.visibility = View.INVISIBLE
+        }
+
     }
 }

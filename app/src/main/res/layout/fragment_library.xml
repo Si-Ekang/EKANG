@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_library"
         android:layout_width="match_parent"
-        android:scrollbars="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:scrollbarFadeDuration="@integer/config_navAnimTime"
+        android:scrollbars="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/progressBar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="16"
         tools:listitem="@layout/row_library"
-        android:layout_height="match_parent"/>
+        tools:visibility="visible" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/medium_margin"
+        android:layout_weight="0.5"
+        android:indeterminate="true"
+        android:indeterminateOnly="true"
+        android:visibility="visible"
+        app:indicatorColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_library" />
+</androidx.appcompat.widget.LinearLayoutCompat>
