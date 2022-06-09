@@ -21,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
 
-@ExperimentalStdlibApi
 @AndroidEntryPoint
 class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnCorrectAnswer {
 
@@ -79,7 +78,6 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener, QuizFragment.OnC
         })
     }
 
-    @ExperimentalStdlibApi
     private fun setupQuizzList() {
         mFragmentList = (mutableListOf<Fragment>() as ArrayList).apply {
 

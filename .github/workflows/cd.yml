@@ -1,0 +1,21 @@
+name: CD Production
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build Android application
+        run: ./gradlew clean build
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: apks
+          path: app/build/**/*.apk

@@ -7,7 +7,7 @@ object Constants {
 
     const val BASE_ENDPOINT_SI_EKANG: String = "https://ekang-api.herokuapp.com/v1/"
 
-    @ExperimentalStdlibApi
+    @JvmStatic
     fun getPreloadDtoQuizzes(): List<Quiz> {
         val quizzes = mutableListOf<Quiz>() as ArrayList
 

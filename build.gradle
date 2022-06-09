@@ -12,40 +12,40 @@ ext {
     versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
 
     // Kotlin
-    kotlinVersion = '1.6.0'
-    coroutinesVersion = '1.5.2'
+    kotlinVersion = '1.7.0'
+    coroutinesVersion = '1.6.2'
     activityKtxVersion = '1.4.0'
-    fragmentKtxVersion = '1.4.0'
+    fragmentKtxVersion = '1.4.1'
 
     // App dependencies
     multidexVersion = '2.0.1'
-    coreVersion = '1.7.0'
-    appCompatVersion = '1.4.0'
-    materialVersion = '1.4.0'
+    coreVersion = '1.8.0'
+    appCompatVersion = '1.4.2'
+    materialVersion = '1.6.1'
     paletteVersion = '1.0.0'
-    constraintLayoutVersion = '2.1.2'
+    constraintLayoutVersion = '2.1.4'
     recyclerViewVersion = '1.2.1'
     cardViewVersion = "1.0.0"
 
-    navigationFragmentVersion = '2.3.5'
-    navigationUiVersion = '2.3.5'
+    navigationFragmentVersion = '2.4.2'
+    navigationUiVersion = '2.4.2'
 
-    roomVersion = '2.3.0'
+    roomVersion = '2.4.2'
 
-    lifecycleVersion = '2.4.0'
+    lifecycleVersion = '2.4.1'
 
-    hiltVersion = '2.40.1'
+    hiltVersion = '2.42'
     hiltAndroidXVersion = '1.0.0'
 
     retrofit2Version = '2.9.0'
-    okhttpBomVersion = '5.0.0-alpha.2'
+    okhttpBomVersion = '5.0.0-alpha.8'
     okhttpLoggingVersion = '5.0.0-alpha.2'
 
-    gsonVersion = '2.8.9'
+    gsonVersion = '2.9.0'
 
-    moshiVersion = '1.12.0'
+    moshiVersion = '1.13.0'
 
-    lottieVersion = '4.2.0'
+    lottieVersion = '5.2.0'
 
     timberVersion = '5.0.1'
 
@@ -143,9 +143,9 @@ buildscript {
     // ext.kotlin_version = "1.5.31"
     // This version (1.0.1) of the Compose Compiler requires Kotlin version 1.5.21
     // but you appear to be using Kotlin version 1.5.31 which is not known to be compatible.
-    ext.kotlin_version = "1.5.21"
-    ext.hiltVersion = "2.40.1"
-    ext.navigationVersion = "2.3.5"
+    ext.kotlin_version = "1.6.10"
+    ext.hiltVersion = "2.42"
+    ext.navigationVersion = '2.4.2'
 
     repositories {
         google()
@@ -153,7 +153,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
 
@@ -164,7 +164,7 @@ buildscript {
 
         // Add the Crashlytics Gradle plugin (be sure to add version
         // 2.0.0 or later if you built your app with Android Studio 4.1).
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.0'
 
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
     }

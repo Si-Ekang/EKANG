@@ -40,7 +40,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
         _viewBinding = null
     }
 
-    @ExperimentalStdlibApi
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_start_quizz -> {

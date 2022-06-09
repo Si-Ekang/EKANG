@@ -52,7 +52,6 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
     private var listener: OnCorrectAnswer? = null
 
-    @ExperimentalStdlibApi
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
