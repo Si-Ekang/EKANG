@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.siekang.data.IRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,14 +25,14 @@ class MainActivityViewModel @Inject constructor(
 
         Timber.d("getTranslations() : page number : $page - size : $size")
 
-        searchJob = viewModelScope.launch(Dispatchers.IO) {
+        searchJob = viewModelScope.launch(IO) {
 
             delay(800)
 
             // Make query to repository and retrieve its translation
             val response = repository.getTranslations(page, size)
 
-            withContext(Dispatchers.Main) {
+            withContext(Main) {
                 Timber.d("$response")
             }
         }
@@ -45,17 +47,16 @@ class MainActivityViewModel @Inject constructor(
         Timber.d("searchWord() : $charSequence")
         val word = charSequence.toString()
 
-        searchJob = viewModelScope.launch(Dispatchers.IO) {
+        searchJob = viewModelScope.launch(IO) {
 
             delay(800)
 
             // Make query to repository and retrieve its translation
             val list = repository.getWordTranslation(word)
 
-            withContext(Dispatchers.Main) {
+            withContext(Main) {
                 Timber.d("$list")
             }
         }
-
     }
 }

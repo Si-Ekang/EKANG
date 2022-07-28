@@ -8,6 +8,8 @@ import com.siekang.data.IRepository
 import com.siekang.data.remote.dto.Translation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
@@ -16,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LibraryViewModel @Inject constructor(
-    val repository: IRepository
+    private val repository: IRepository
 ) : ViewModel() {
 
     private val translations: MutableLiveData<List<Translation>> = MutableLiveData()
@@ -35,7 +37,7 @@ class LibraryViewModel @Inject constructor(
             return
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(IO) {
             try {
                 supervisorScope {
 
@@ -48,7 +50,7 @@ class LibraryViewModel @Inject constructor(
                         Timber.e("Response is null")
                     }
 
-                    withContext(Dispatchers.Main) {
+                    withContext(Main) {
                         translations.value = response
                     }
                 }
@@ -63,10 +65,11 @@ class LibraryViewModel @Inject constructor(
         }
     }
 
+    fun resetCurrentIndex() { currentIndex = 1}
+    fun resetHasNextIndex() { hasNextItemsInRemote = true}
+
     companion object {
         var currentIndex = 1
-
         var hasNextItemsInRemote: Boolean = false
     }
-
 }

@@ -11,7 +11,6 @@ class DbImpl @Inject constructor(
 ) : IDb {
 
     private var mUserDao: UserDao = userDao
-
     private var mWordDao: WordDao = wordDao
 
     override suspend fun getWordTranslation(word: String): List<String> {

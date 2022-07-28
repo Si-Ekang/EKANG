@@ -26,8 +26,8 @@ import java.util.regex.Pattern
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTouchListener,
-    TextWatcher {
+class MainActivity : AppCompatActivity(),
+    View.OnClickListener, View.OnFocusChangeListener, View.OnTouchListener, TextWatcher {
 
     private var _viewBinding: ActivityMainBinding? = null
     private val binding get() = _viewBinding!!
@@ -105,6 +105,8 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
     /////////////////////////////////////
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
+
+        binding.layoutContentToolbar.llFrenchToFangContainer.setOnClickListener(this)
 
         binding.layoutContentToolbar.tietWordTranslate.addTextChangedListener(this)
         binding.layoutContentToolbar.tietWordTranslate.setOnTouchListener(this)
@@ -254,5 +256,17 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener, View.OnTou
         )
 
         mViewModel.searchWord(s.toString())
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.ll_french_to_fang_container -> {
+                // run switch animation
+                // update datastore value
+            }
+            else -> {
+                Timber.e("else branch")
+            }
+        }
     }
 }

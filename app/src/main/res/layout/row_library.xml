@@ -6,6 +6,10 @@
         <variable
             name="translation"
             type="com.siekang.data.remote.dto.Translation" />
+
+        <variable
+            name="listener"
+            type="com.siekang.ui.library.LibraryClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,6 +17,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{(view) -> listener.onLibraryItemClicked(view, translation)}"
         app:cardCornerRadius="@dimen/small_margin"
         app:cardElevation="@dimen/extra_small_margin"
         app:cardPreventCornerOverlap="true"
@@ -53,8 +58,15 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 tools:text="Fang" />
-
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clickable="false"
+            android:visibility="gone" />
 
     </com.google.android.material.card.MaterialCardView>
 </layout>
