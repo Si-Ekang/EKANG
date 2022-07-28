@@ -40,6 +40,6 @@ class LibraryAdapter(
     }
 
     override fun getItemCount(): Int {
-        return mTranslationItems.size ?: 0
+        return mTranslationItems.size
     }
 }
