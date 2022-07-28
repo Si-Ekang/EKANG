@@ -89,6 +89,11 @@ dependencies {
     kapt rootProject.ext.generalDependencies.lifecycleCompiler
     implementation rootProject.ext.generalDependencies.lifecycleService
 
+    implementation rootProject.ext.generalDependencies.datastore
+    implementation rootProject.ext.generalDependencies.datastorePreferences
+    implementation rootProject.ext.generalDependencies.preferences
+
+
     /* Hilt - We are going to use hilt.android which includes
      * support for Activity and fragment injection so we need to include
      * the following dependencies */

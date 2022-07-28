@@ -32,6 +32,9 @@ ext {
 
     roomVersion = '2.4.2'
 
+    dataStoreVersion = '1.0.0'
+    preferenceVersion = '1.2.0'
+
     lifecycleVersion = '2.4.1'
 
     hiltVersion = '2.42'
@@ -92,6 +95,10 @@ ext {
             lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
             lifecycleService        : "androidx.lifecycle:lifecycle-service:$lifecycleVersion",
 
+            datastore                   : "androidx.datastore:datastore:$dataStoreVersion",
+            datastorePreferences        : "androidx.datastore:datastore-preferences:$dataStoreVersion",
+            preferences                 : "androidx.preference:preference-ktx:$preferenceVersion",
+
             /* Hilt - We are going to use hilt.android which includes
              * support for Activity and fragment injection so we need to include
              * the following dependencies */
@@ -120,7 +127,7 @@ ext {
             moshiKotlin             : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
 
             // Lottie
-            lottie             : "com.airbnb.android:lottie:$lottieVersion",
+            lottie                  : "com.airbnb.android:lottie:$lottieVersion",
 
 
             // Timber : Logging library
@@ -143,7 +150,7 @@ buildscript {
     // ext.kotlin_version = "1.5.31"
     // This version (1.0.1) of the Compose Compiler requires Kotlin version 1.5.21
     // but you appear to be using Kotlin version 1.5.31 which is not known to be compatible.
-    ext.kotlin_version = "1.6.10"
+    ext.kotlin_version = "1.6.21"
     ext.hiltVersion = "2.42"
     ext.navigationVersion = '2.4.2'
 
@@ -164,7 +171,7 @@ buildscript {
 
         // Add the Crashlytics Gradle plugin (be sure to add version
         // 2.0.0 or later if you built your app with Android Studio 4.1).
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
 
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
     }
