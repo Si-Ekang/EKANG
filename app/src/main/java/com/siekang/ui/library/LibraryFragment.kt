@@ -20,7 +20,6 @@ import com.siekang.databinding.FragmentLibraryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class LibraryFragment : Fragment(), LibraryClickListener {
 
